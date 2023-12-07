@@ -1,0 +1,56 @@
+name: 'aggregate_article_service'
+
+services:
+  
+  domic.aggregate.article.api:
+    networks: 
+      - domic
+    image: aggregate_article_service:1.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "1000-1020:443"
+    volumes:
+      - log:/app/CoreLogs
+      - ~\.aspnet\https\:/https/
+    environment:
+      - E-RabbitMQ-Host=host.docker.internal
+      - E-RabbitMQ-Port=5672
+      - E-RabbitMQ-Username=guest
+      - E-RabbitMQ-Password=guest
+      - I-RabbitMQ-Host=
+      - I-RabbitMQ-Port=
+      - I-RabbitMQ-Username=
+      - I-RabbitMQ-Password=
+      - RedisConnectionString=
+      - MongoConnectionString=
+      - C-SqlServerConnectionString=
+      - Q-SqlServerConnectionString=Server=domic.aggregate.article.sql.server,1433;Database=AggregateArticleService;User ID=sa;Password=Hasan313@@313!!;MultipleActiveResultSets=true;Integrated Security=false;
+      - Host=domic.aggregate.article.api
+      - Port=443
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Dotris313@313%%
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Karami.WebAPI.pfx
+    depends_on:
+      - domic.aggregate.article.sql.server
+  
+  domic.aggregate.article.sql.server:
+    networks:
+      - domic
+    image: 'mcr.microsoft.com/mssql/server'
+    container_name: 'aggregate_article_sql_server'
+    ports:
+      - 1533:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Hasan313@@313!!
+
+volumes:
+  log:
+    
+networks:
+  domic:
+    external: true

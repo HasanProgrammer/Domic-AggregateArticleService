@@ -1,0 +1,280 @@
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
+
+ Date: 1402/05/06 | Message: Value cannot be null. | Source: System.ArgumentNullException: Value cannot be null.
+   at System.RuntimeType.MakeGenericType(Type[] instantiation)
+   at Karami.Core.Domain.Implementations.MessageBroker._eventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, String service, IServiceProvider serviceProvider) in C:\Users\Hasan Karami\Desktop\Hasan Company\Programming ASP\ASP_Micro_Clean_Dotris_Final\src\Services\CoreService\Architecture\Infrastructure\Karami.Core.Infrastructure\Implementations\MessageBroker.cs:line 311 
+
