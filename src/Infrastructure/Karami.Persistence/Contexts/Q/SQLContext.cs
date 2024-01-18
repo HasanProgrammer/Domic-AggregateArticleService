@@ -21,12 +21,12 @@ public partial class SQLContext : DbContext
 /*Entity*/
 public partial class SQLContext
 {
-    public DbSet<UserQuery> Users                   { get; set; }
-    public DbSet<FileQuery> Files                   { get; set; }
-    public DbSet<ArticleQuery> Articles             { get; set; }
-    public DbSet<ArticleCommentQuery> Comments      { get; set; }
+    public DbSet<UserQuery> Users { get; set; }
+    public DbSet<FileQuery> Files { get; set; }
+    public DbSet<ArticleQuery> Articles { get; set; }
+    public DbSet<ArticleCommentQuery> Comments { get; set; }
     public DbSet<ArticleCommentAnswerQuery> Answers { get; set; }
-    public DbSet<CategoryQuery> Categories          { get; set; }
+    public DbSet<CategoryQuery> Categories { get; set; }
 }
 
 /*Config*/

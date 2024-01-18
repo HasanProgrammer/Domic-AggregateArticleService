@@ -23,6 +23,7 @@ public class UpdateArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
         if (targetComment is not null)
         {
             targetComment.Comment               = @event.Comment;
+            targetComment.UpdatedBy             = @event.UpdatedBy;
             targetComment.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             targetComment.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             

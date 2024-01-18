@@ -19,7 +19,8 @@ public class UpdateCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
     {
         var targetCategory = _categoryQueryRepository.FindById(@event.Id);
 
-        targetCategory.Name = @event.Name;
+        targetCategory.Name      = @event.Name;
+        targetCategory.UpdatedBy = @event.UpdatedBy;
 
         _categoryQueryRepository.Change(targetCategory);
     }

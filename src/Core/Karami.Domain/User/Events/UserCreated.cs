@@ -5,10 +5,9 @@ using Karami.Core.Domain.Contracts.Abstracts;
 namespace Karami.Domain.User.Events;
 
 [MessageBroker(Queue = Broker.AggregateArticle_User_Queue)]
-public class UserCreated : CreateDomainEvent
+public class UserCreated : CreateDomainEvent<string>
 {
-    public string Id        { get; init; }
-    public string FirstName { get; init; }
-    public string LastName  { get; init; }
-    public bool IsActive    { get; init; }
+    public required string FirstName { get; init; }
+    public required string LastName  { get; init; }
+    public required bool IsActive    { get; init; }
 }

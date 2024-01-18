@@ -5,7 +5,6 @@ using Karami.Core.Domain.Contracts.Abstracts;
 namespace Karami.Domain.ArticleComment.Events;
 
 [MessageBroker(Queue = Broker.AggregateArticle_ArticleComment_Queue)]
-public class ArticleCommentActived : UpdateDomainEvent
+public class ArticleCommentActived : UpdateDomainEvent<string>
 {
-    public string Id { get; init; }
 }

@@ -10,7 +10,6 @@ namespace Karami.Domain.Article.Entities;
 
 public class ArticleQuery : EntityQuery<string>
 {
-    public string UserId     { get; set; }
     public string CategoryId { get; set; }
     public string Title      { get; set; }
     public string Summary    { get; set; }

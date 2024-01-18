@@ -32,6 +32,7 @@ public class InActiveArticleConsumerEventBusHandler : IConsumerEventBusHandler<A
         var targetArticle = _articleQueryRepository.FindByIdEagerLoading(@event.Id);
 
         targetArticle.IsActive              = IsActive.InActive;
+        targetArticle.UpdatedBy             = @event.UpdatedBy;
         targetArticle.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
         targetArticle.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
 
@@ -40,6 +41,7 @@ public class InActiveArticleConsumerEventBusHandler : IConsumerEventBusHandler<A
         foreach (var comment in targetArticle.Comments)
         {
             comment.IsActive              = IsActive.InActive;
+            comment.UpdatedBy             = @event.UpdatedBy;
             comment.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             comment.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             
@@ -48,6 +50,7 @@ public class InActiveArticleConsumerEventBusHandler : IConsumerEventBusHandler<A
             foreach (var answer in comment.Answers)
             {
                 answer.IsActive              = IsActive.InActive;
+                answer.UpdatedBy             = @event.UpdatedBy;
                 answer.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                 answer.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
                 

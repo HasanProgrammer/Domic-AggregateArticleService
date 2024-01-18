@@ -23,6 +23,7 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
         
         targetUser.FirstName = @event.FirstName;
         targetUser.LastName  = @event.LastName;
+        targetUser.UpdatedBy = @event.UpdatedBy;
         targetUser.IsActive  = @event.IsActive ? IsActive.Active : IsActive.InActive;
             
         _userQueryRepository.Change(targetUser);

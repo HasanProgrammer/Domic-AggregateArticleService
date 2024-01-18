@@ -32,27 +32,24 @@ public class CreateArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
         {
             var newArticle = new ArticleQuery {
                 Id                    = @event.Id                    ,
-                UserId                = @event.UserId                ,
+                CreatedBy             = @event.CreatedBy             ,
                 CategoryId            = @event.CategoryId            ,
                 Title                 = @event.Title                 ,
                 Summary               = @event.Summary               ,
                 Body                  = @event.Body                  ,
                 CreatedAt_EnglishDate = @event.CreatedAt_EnglishDate ,
-                CreatedAt_PersianDate = @event.CreatedAt_PersianDate ,
-                UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate ,
-                UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate
+                CreatedAt_PersianDate = @event.CreatedAt_PersianDate
             };
 
             var newFile = new FileQuery {
                 Id                    = @event.FileId                ,
+                CreatedBy             = @event.CreatedBy             ,
                 ArticleId             = @event.Id                    ,
                 Path                  = @event.FilePath              ,
                 Name                  = @event.FileName              ,
                 Extension             = @event.FileExtension         ,
                 CreatedAt_EnglishDate = @event.CreatedAt_EnglishDate ,
-                CreatedAt_PersianDate = @event.CreatedAt_PersianDate ,
-                UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate ,
-                UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate
+                CreatedAt_PersianDate = @event.CreatedAt_PersianDate
             };
         
             _articleQueryRepository.Add(newArticle);

@@ -5,7 +5,7 @@ using Karami.Domain.Article.Entities;
 
 namespace Karami.Domain.Category.Entities;
 
-public class CategoryQuery : BaseEntityQuery<string>
+public class CategoryQuery : EntityQuery<string>
 {
     public string Name { get; set; }
     

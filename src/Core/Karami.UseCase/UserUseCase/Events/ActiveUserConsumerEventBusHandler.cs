@@ -21,7 +21,8 @@ public class ActiveUserConsumerEventBusHandler : IConsumerEventBusHandler<UserAc
 
         if (targetUser is not null)
         {
-            targetUser.IsActive = IsActive.Active;
+            targetUser.IsActive  = IsActive.Active;
+            targetUser.UpdatedBy = @event.UpdatedBy;
             
             _userQueryRepository.Change(targetUser);
         }

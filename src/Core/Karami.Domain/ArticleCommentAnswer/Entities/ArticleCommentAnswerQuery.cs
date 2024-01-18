@@ -8,7 +8,6 @@ namespace Karami.Domain.ArticleCommentAnswer.Entities;
 
 public class ArticleCommentAnswerQuery : EntityQuery<string>
 {
-    public string OwnerId   { get; set; }
     public string CommentId { get; set; }
     public string Answer    { get; set; }
     

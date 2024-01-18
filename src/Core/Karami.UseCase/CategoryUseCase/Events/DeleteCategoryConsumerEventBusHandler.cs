@@ -41,6 +41,7 @@ public class DeleteCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
         if (targetCategory is not null)
         {
             targetCategory.IsDeleted = IsDeleted.Delete;
+            targetCategory.UpdatedBy = @event.UpdatedBy;
 
             _categoryQueryRepository.Change(targetCategory);
 
@@ -53,6 +54,7 @@ public class DeleteCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
                     _fileQueryRepository.Remove(file);
                 
                 article.IsDeleted             = IsDeleted.Delete;
+                article.UpdatedBy             = @event.UpdatedBy;
                 article.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                 article.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
                     
@@ -61,6 +63,7 @@ public class DeleteCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
                 foreach (var comment in article.Comments)
                 {
                     comment.IsDeleted             = IsDeleted.Delete;
+                    comment.UpdatedBy             = @event.UpdatedBy;
                     comment.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                     comment.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
                     
@@ -69,6 +72,7 @@ public class DeleteCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
                     foreach (var answer in comment.Answers)
                     {
                         answer.IsDeleted             = IsDeleted.Delete;
+                        answer.UpdatedBy             = @event.UpdatedBy;
                         answer.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                         answer.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
                     

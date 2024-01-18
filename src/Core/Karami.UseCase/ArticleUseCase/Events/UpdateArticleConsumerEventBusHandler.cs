@@ -27,6 +27,7 @@ public class UpdateArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
     {
         var targetArticle = _articleQueryRepository.FindByIdEagerLoading(@event.Id);
 
+        targetArticle.UpdatedBy             = @event.UpdatedBy;
         targetArticle.CategoryId            = @event.CategoryId;
         targetArticle.Title                 = @event.Title;
         targetArticle.Summary               = @event.Summary;
@@ -40,6 +41,7 @@ public class UpdateArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
             
             var newFile = new FileQuery {
                 Id                    = @event.FileId                ,
+                UpdatedBy             = @event.UpdatedBy             , 
                 ArticleId             = @event.Id                    ,
                 Path                  = @event.FilePath              ,
                 Name                  = @event.FileName              ,

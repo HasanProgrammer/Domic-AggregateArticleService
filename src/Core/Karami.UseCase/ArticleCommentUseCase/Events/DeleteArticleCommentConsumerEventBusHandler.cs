@@ -31,6 +31,7 @@ public class DeleteArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
         if (targetComment is not null)
         {
             targetComment.IsDeleted             = IsDeleted.Delete;
+            targetComment.UpdatedBy             = @event.UpdatedBy;
             targetComment.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             targetComment.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             
@@ -39,6 +40,7 @@ public class DeleteArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
             foreach (var answer in targetComment.Answers)
             {
                 answer.IsDeleted             = IsDeleted.Delete;
+                answer.UpdatedBy             = @event.UpdatedBy;
                 answer.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                 answer.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
                 

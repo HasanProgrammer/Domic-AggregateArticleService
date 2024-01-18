@@ -31,6 +31,7 @@ public class ActiveArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
         if (targetComment is not null)
         {
             targetComment.IsActive              = IsActive.Active;
+            targetComment.UpdatedBy             = @event.UpdatedBy;
             targetComment.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             targetComment.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             
@@ -39,6 +40,7 @@ public class ActiveArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
             foreach (var answer in targetComment.Answers)
             {
                 answer.IsActive              = IsActive.Active;
+                answer.UpdatedBy             = @event.UpdatedBy;
                 answer.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                 answer.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
                 

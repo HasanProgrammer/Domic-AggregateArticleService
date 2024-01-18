@@ -1,31 +1,18 @@
-using Karami.Core.Domain.Enumerations;
+using Karami.Core.Persistence.Configs;
 using Karami.Domain.ArticleCommentAnswer.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Karami.Persistence.Configs.Q;
 
-public class ArticleCommentAnswerQueryConfig : IEntityTypeConfiguration<ArticleCommentAnswerQuery>
+public class ArticleCommentAnswerQueryConfig : BaseEntityQueryConfig<ArticleCommentAnswerQuery, string>
 {
-    public void Configure(EntityTypeBuilder<ArticleCommentAnswerQuery> builder)
+    public override void Configure(EntityTypeBuilder<ArticleCommentAnswerQuery> builder)
     {
-        //PrimaryKey
-        
-        builder.HasKey(article => article.Id);
-
         builder.ToTable("ArticleCommentAnswers");
+        
+        base.Configure(builder);
 
-        /*-----------------------------------------------------------*/
-        
-        //Configs
-        
-        builder.Property(article => article.IsActive)
-               .HasConversion(new EnumToNumberConverter<IsActive , int>());
-        
-        builder.Property(article => article.IsDeleted)
-               .HasConversion(new EnumToNumberConverter<IsDeleted , int>());
-        
         /*-----------------------------------------------------------*/
         
         //Relations
@@ -36,12 +23,6 @@ public class ArticleCommentAnswerQueryConfig : IEntityTypeConfiguration<ArticleC
         
         builder.HasOne(answer => answer.User)
                .WithMany(user => user.Answers)
-               .HasForeignKey(answer => answer.OwnerId);
-
-        /*-----------------------------------------------------------*/
-        
-        //Query
-
-        builder.HasQueryFilter(article => article.IsDeleted == IsDeleted.UnDelete);
+               .HasForeignKey(answer => answer.CreatedBy);
     }
 }

@@ -25,13 +25,11 @@ public class CreateArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
         {
             var newComment = new ArticleCommentQuery {
                 Id                    = @event.Id                    ,
-                OwnerId               = @event.OwnerId               ,
+                CreatedBy             = @event.CreatedBy             ,
                 ArticleId             = @event.ArticleId             ,
                 Comment               = @event.Comment               ,
                 CreatedAt_EnglishDate = @event.CreatedAt_EnglishDate ,
-                UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate ,
-                CreatedAt_PersianDate = @event.CreatedAt_PersianDate ,
-                UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate
+                CreatedAt_PersianDate = @event.CreatedAt_PersianDate 
             };
 
             _articleCommentQueryRepository.Add(newComment);

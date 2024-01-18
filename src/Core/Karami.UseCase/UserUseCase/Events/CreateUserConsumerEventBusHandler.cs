@@ -24,6 +24,7 @@ public class CreateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserCr
         {
             var newUser = new UserQuery {
                 Id        = @event.Id        ,
+                CreatedBy = @event.CreatedBy ,
                 FirstName = @event.FirstName ,
                 LastName  = @event.LastName
             };

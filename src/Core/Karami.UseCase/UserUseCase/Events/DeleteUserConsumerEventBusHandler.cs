@@ -12,8 +12,7 @@ public class DeleteUserConsumerEventBusHandler : IConsumerEventBusHandler<UserDe
 
     public DeleteUserConsumerEventBusHandler(IUserQueryRepository userQueryRepository) 
         => _userQueryRepository = userQueryRepository;
-
-    [WithMaxRetry(Count = 5)]
+    
     [WithTransaction]
     [WithCleanCache(Keies = Cache.AggregateArticles)]
     public void Handle(UserDeleted @event)

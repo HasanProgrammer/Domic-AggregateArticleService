@@ -7,7 +7,6 @@ namespace Karami.Domain.ArticleComment.Entities;
 
 public class ArticleCommentQuery : EntityQuery<string>
 {
-    public string OwnerId   { get; set; }
     public string ArticleId { get; set; }
     public string Comment   { get; set; }
     
