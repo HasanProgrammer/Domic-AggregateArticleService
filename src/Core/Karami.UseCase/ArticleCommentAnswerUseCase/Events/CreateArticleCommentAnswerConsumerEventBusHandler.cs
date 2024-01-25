@@ -27,6 +27,7 @@ public class CreateArticleCommentAnswerConsumerEventBusHandler : IConsumerEventB
             var newAnswer = new ArticleCommentAnswerQuery {
                 Id                    = @event.Id                    ,
                 CreatedBy             = @event.CreatedBy             ,
+                CreatedRole           = @event.CreatedRole           , 
                 CommentId             = @event.CommentId             ,
                 Answer                = @event.Answer                ,  
                 CreatedAt_EnglishDate = @event.CreatedAt_EnglishDate ,

@@ -7,7 +7,8 @@ using Karami.UseCase.ArticleCommentAnswerUseCase.DTOs.ViewModels;
 
 namespace Karami.UseCase.ArticleCommentAnswerUseCase.Caches;
 
-public class ArticleCommentAnswersEagerLoadingMemoryCache : IMemoryCacheSetter<IEnumerable<ArticleCommentAnswersViewModel>>
+public class ArticleCommentAnswersEagerLoadingMemoryCache : 
+    IMemoryCacheSetter<IEnumerable<ArticleCommentAnswersViewModel>>
 {
     private readonly IArticleCommentAnswerQueryRepository _articleCommentAnswerQueryRepository;
 

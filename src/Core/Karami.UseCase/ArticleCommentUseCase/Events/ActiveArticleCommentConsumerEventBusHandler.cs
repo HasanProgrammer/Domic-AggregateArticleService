@@ -32,6 +32,7 @@ public class ActiveArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
         {
             targetComment.IsActive              = IsActive.Active;
             targetComment.UpdatedBy             = @event.UpdatedBy;
+            targetComment.UpdatedRole           = @event.UpdatedRole;
             targetComment.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             targetComment.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             
@@ -41,6 +42,7 @@ public class ActiveArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
             {
                 answer.IsActive              = IsActive.Active;
                 answer.UpdatedBy             = @event.UpdatedBy;
+                answer.UpdatedRole           = @event.UpdatedRole;
                 answer.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                 answer.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
                 

@@ -26,6 +26,7 @@ public class DeleteArticleCommentAnswerConsumerEventBusHandler : IConsumerEventB
         {
             targetAnswer.IsDeleted             = IsDeleted.Delete;
             targetAnswer.UpdatedBy             = @event.UpdatedBy;
+            targetAnswer.UpdatedRole           = @event.UpdatedRole;
             targetAnswer.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             targetAnswer.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             

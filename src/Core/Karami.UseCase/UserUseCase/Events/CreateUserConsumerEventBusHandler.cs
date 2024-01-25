@@ -23,10 +23,13 @@ public class CreateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserCr
         if (targetUser is null)
         {
             var newUser = new UserQuery {
-                Id        = @event.Id        ,
-                CreatedBy = @event.CreatedBy ,
-                FirstName = @event.FirstName ,
-                LastName  = @event.LastName
+                Id          = @event.Id          ,
+                CreatedBy   = @event.CreatedBy   ,
+                CreatedRole = @event.CreatedRole ,
+                FirstName   = @event.FirstName   ,
+                LastName    = @event.LastName    ,
+                CreatedAt_EnglishDate = @event.CreatedAt_EnglishDate,
+                CreatedAt_PersianDate = @event.CreatedAt_PersianDate
             };
         
             _userQueryRepository.Add(newUser);

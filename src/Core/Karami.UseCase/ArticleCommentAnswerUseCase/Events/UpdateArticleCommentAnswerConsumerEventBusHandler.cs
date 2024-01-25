@@ -25,6 +25,7 @@ public class UpdateArticleCommentAnswerConsumerEventBusHandler : IConsumerEventB
         {
             targetAnswer.Answer                = @event.Answer;
             targetAnswer.UpdatedBy             = @event.UpdatedBy;
+            targetAnswer.UpdatedRole           = @event.UpdatedRole;
             targetAnswer.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             targetAnswer.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             

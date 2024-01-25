@@ -1,5 +1,4 @@
 ﻿using Karami.Core.Common.ClassConsts;
-using Karami.Core.Domain.Entities;
 using Karami.Core.UseCase.Attributes;
 using Karami.Core.UseCase.Contracts.Interfaces;
 using Karami.Domain.Category.Contracts.Interfaces;
@@ -23,11 +22,13 @@ public class CreateCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
 
         if (targetCategory is null)
         {
-            var newCategory = new CategoryQuery
-            {
-                Id = @event.Id,
-                CreatedBy = @event.CreatedBy,
-                Name = @event.Name
+            var newCategory = new CategoryQuery {
+                Id          = @event.Id,
+                CreatedBy   = @event.CreatedBy,
+                CreatedRole = @event.CreatedRole,
+                Name        = @event.Name,
+                CreatedAt_EnglishDate = @event.CreatedAt_EnglishDate,
+                CreatedAt_PersianDate = @event.CreatedAt_PersianDate
             };
         
             _categoryQueryRepository.Add(newCategory);

@@ -13,18 +13,20 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
 
     public UpdateUserConsumerEventBusHandler(IUserQueryRepository userQueryRepository) 
         => _userQueryRepository = userQueryRepository;
-
-    [WithMaxRetry(Count = 5)]
+    
     [WithTransaction]
     [WithCleanCache(Keies = Cache.AggregateArticles)]
     public void Handle(UserUpdated @event)
     {
         var targetUser = _userQueryRepository.FindById(@event.Id);
         
-        targetUser.FirstName = @event.FirstName;
-        targetUser.LastName  = @event.LastName;
-        targetUser.UpdatedBy = @event.UpdatedBy;
-        targetUser.IsActive  = @event.IsActive ? IsActive.Active : IsActive.InActive;
+        targetUser.IsActive    = @event.IsActive ? IsActive.Active : IsActive.InActive;
+        targetUser.FirstName   = @event.FirstName;
+        targetUser.LastName    = @event.LastName;
+        targetUser.UpdatedBy   = @event.UpdatedBy;
+        targetUser.UpdatedRole = @event.UpdatedRole;
+        targetUser.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
+        targetUser.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             
         _userQueryRepository.Change(targetUser);
     }

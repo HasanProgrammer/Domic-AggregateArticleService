@@ -32,8 +32,9 @@ public class CreateArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
         {
             var newArticle = new ArticleQuery {
                 Id                    = @event.Id                    ,
-                CreatedBy             = @event.CreatedBy             ,
                 CategoryId            = @event.CategoryId            ,
+                CreatedRole           = @event.CreatedRole           ,
+                CreatedBy             = @event.CreatedBy             ,
                 Title                 = @event.Title                 ,
                 Summary               = @event.Summary               ,
                 Body                  = @event.Body                  ,
@@ -43,8 +44,9 @@ public class CreateArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
 
             var newFile = new FileQuery {
                 Id                    = @event.FileId                ,
-                CreatedBy             = @event.CreatedBy             ,
                 ArticleId             = @event.Id                    ,
+                CreatedRole           = @event.CreatedRole           ,
+                CreatedBy             = @event.CreatedBy             ,
                 Path                  = @event.FilePath              ,
                 Name                  = @event.FileName              ,
                 Extension             = @event.FileExtension         ,

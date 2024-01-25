@@ -24,6 +24,7 @@ public class UpdateArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
         {
             targetComment.Comment               = @event.Comment;
             targetComment.UpdatedBy             = @event.UpdatedBy;
+            targetComment.UpdatedRole           = @event.UpdatedRole;
             targetComment.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             targetComment.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             

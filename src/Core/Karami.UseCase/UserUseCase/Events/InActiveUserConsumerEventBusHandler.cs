@@ -21,8 +21,11 @@ public class InActiveUserConsumerEventBusHandler : IConsumerEventBusHandler<User
 
         if (targetUser is not null)
         {
-            targetUser.IsActive  = IsActive.InActive;
-            targetUser.UpdatedBy = @event.UpdatedBy;
+            targetUser.IsActive    = IsActive.InActive;
+            targetUser.UpdatedBy   = @event.UpdatedBy;
+            targetUser.UpdatedRole = @event.UpdatedRole;
+            targetUser.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
+            targetUser.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             
             _userQueryRepository.Change(targetUser);
         }

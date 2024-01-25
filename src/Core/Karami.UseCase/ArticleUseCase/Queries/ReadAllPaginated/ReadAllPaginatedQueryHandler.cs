@@ -6,7 +6,8 @@ using Karami.UseCase.ArticleUseCase.DTOs.ViewModels;
 
 namespace Karami.UseCase.ArticleUseCase.Queries.ReadAllPaginated;
 
-public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery, PaginatedCollection<ArticlesViewModel>>
+public class ReadAllPaginatedQueryHandler : 
+    IQueryHandler<ReadAllPaginatedQuery, PaginatedCollection<ArticlesViewModel>>
 {
     private readonly ICacheService _cacheService;
 

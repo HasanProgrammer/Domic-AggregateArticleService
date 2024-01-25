@@ -33,6 +33,7 @@ public class InActiveArticleConsumerEventBusHandler : IConsumerEventBusHandler<A
 
         targetArticle.IsActive              = IsActive.InActive;
         targetArticle.UpdatedBy             = @event.UpdatedBy;
+        targetArticle.UpdatedRole           = @event.UpdatedRole;
         targetArticle.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
         targetArticle.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
 
@@ -42,6 +43,7 @@ public class InActiveArticleConsumerEventBusHandler : IConsumerEventBusHandler<A
         {
             comment.IsActive              = IsActive.InActive;
             comment.UpdatedBy             = @event.UpdatedBy;
+            comment.UpdatedRole           = @event.UpdatedRole;
             comment.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             comment.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             
@@ -51,6 +53,7 @@ public class InActiveArticleConsumerEventBusHandler : IConsumerEventBusHandler<A
             {
                 answer.IsActive              = IsActive.InActive;
                 answer.UpdatedBy             = @event.UpdatedBy;
+                answer.UpdatedRole           = @event.UpdatedRole;
                 answer.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                 answer.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
                 

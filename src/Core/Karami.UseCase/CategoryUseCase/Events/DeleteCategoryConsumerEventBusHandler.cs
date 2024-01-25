@@ -40,8 +40,11 @@ public class DeleteCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
 
         if (targetCategory is not null)
         {
-            targetCategory.IsDeleted = IsDeleted.Delete;
-            targetCategory.UpdatedBy = @event.UpdatedBy;
+            targetCategory.IsDeleted   = IsDeleted.Delete;
+            targetCategory.UpdatedBy   = @event.UpdatedBy;
+            targetCategory.UpdatedRole = @event.UpdatedRole;
+            targetCategory.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
+            targetCategory.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
 
             _categoryQueryRepository.Change(targetCategory);
 
@@ -55,6 +58,7 @@ public class DeleteCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
                 
                 article.IsDeleted             = IsDeleted.Delete;
                 article.UpdatedBy             = @event.UpdatedBy;
+                article.UpdatedRole           = @event.UpdatedRole;
                 article.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                 article.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
                     
@@ -64,6 +68,7 @@ public class DeleteCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
                 {
                     comment.IsDeleted             = IsDeleted.Delete;
                     comment.UpdatedBy             = @event.UpdatedBy;
+                    comment.UpdatedRole           = @event.UpdatedRole;
                     comment.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                     comment.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
                     
@@ -73,6 +78,7 @@ public class DeleteCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
                     {
                         answer.IsDeleted             = IsDeleted.Delete;
                         answer.UpdatedBy             = @event.UpdatedBy;
+                        answer.UpdatedRole           = @event.UpdatedRole;
                         answer.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                         answer.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
                     

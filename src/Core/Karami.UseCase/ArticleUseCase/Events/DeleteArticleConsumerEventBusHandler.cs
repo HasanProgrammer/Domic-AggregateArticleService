@@ -44,6 +44,7 @@ public class DeleteArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
             
             targetArticle.IsDeleted             = IsDeleted.Delete;
             targetArticle.UpdatedBy             = @event.UpdatedBy;
+            targetArticle.UpdatedRole           = @event.UpdatedRole;
             targetArticle.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             targetArticle.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             
@@ -53,6 +54,7 @@ public class DeleteArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
             {
                 comment.IsDeleted             = IsDeleted.Delete;
                 comment.UpdatedBy             = @event.UpdatedBy;
+                comment.UpdatedRole           = @event.UpdatedRole;
                 comment.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                 comment.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             
@@ -62,6 +64,7 @@ public class DeleteArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
                 {
                     answer.IsDeleted             = IsDeleted.Delete;
                     answer.UpdatedBy             = @event.UpdatedBy;
+                    answer.UpdatedRole           = @event.UpdatedRole;
                     answer.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                     answer.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
                 

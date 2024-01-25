@@ -26,6 +26,7 @@ public class CreateArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
             var newComment = new ArticleCommentQuery {
                 Id                    = @event.Id                    ,
                 CreatedBy             = @event.CreatedBy             ,
+                CreatedRole           = @event.CreatedRole           ,
                 ArticleId             = @event.ArticleId             ,
                 Comment               = @event.Comment               ,
                 CreatedAt_EnglishDate = @event.CreatedAt_EnglishDate ,
