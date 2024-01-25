@@ -7,16 +7,16 @@ public class ArticlesViewModel : ViewModel
 {
     //Article
     
-    public required string Id                  { get; init; }
-    public required string Title               { get; init; }
-    public required string Summary             { get; init; }
-    public required string Body                { get; init; }
-    public required bool IsDeleted             { get; init; }
-    public required bool IsActive              { get; init; }
-    public required string CreatedAt_Persian   { get; init; }
-    public required string UpdatedAt_Persian   { get; init; }
-    public required DateTime CreatedAt_English { get; init; }
-    public required DateTime UpdatedAt_English { get; init; }
+    public required string Id                   { get; init; }
+    public required string Title                { get; init; }
+    public required string Summary              { get; init; }
+    public required string Body                 { get; init; }
+    public required bool IsDeleted              { get; init; }
+    public required bool IsActive               { get; init; }
+    public required string CreatedAt_Persian    { get; init; }
+    public required string UpdatedAt_Persian    { get; init; }
+    public required DateTime CreatedAt_English  { get; init; }
+    public required DateTime? UpdatedAt_English { get; init; }
     
     //User
     
