@@ -9,10 +9,14 @@ public class UserQueryConfig : BaseEntityQueryConfig<UserQuery, string>
 {
     public override void Configure(EntityTypeBuilder<UserQuery> builder)
     {
-        builder.ToTable("Users");
-        
         base.Configure(builder);
 
+        /*-----------------------------------------------------------*/
+        
+        //Configs
+        
+        builder.ToTable("Users");
+        
         /*-----------------------------------------------------------*/
         
         //Relations

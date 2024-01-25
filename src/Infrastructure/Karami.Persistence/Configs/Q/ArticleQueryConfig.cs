@@ -9,10 +9,14 @@ public class ArticleQueryConfig : BaseEntityQueryConfig<ArticleQuery, string>
 {
     public override void Configure(EntityTypeBuilder<ArticleQuery> builder)
     {
-        builder.ToTable("Articles");
-        
         base.Configure(builder);
 
+        /*-----------------------------------------------------------*/
+        
+        //Configs
+        
+        builder.ToTable("Articles");
+        
         /*-----------------------------------------------------------*/
         
         //Relations

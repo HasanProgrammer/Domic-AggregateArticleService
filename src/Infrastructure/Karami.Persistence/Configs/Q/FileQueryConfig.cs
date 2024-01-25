@@ -9,10 +9,14 @@ public class FileQueryConfig : BaseEntityQueryConfig<FileQuery, string>
 {
     public override void Configure(EntityTypeBuilder<FileQuery> builder)
     {
-        builder.ToTable("Files");
-        
         base.Configure(builder);
 
+        /*-----------------------------------------------------------*/
+        
+        //Configs
+        
+        builder.ToTable("Files");
+        
         /*-----------------------------------------------------------*/
         
         //Relations

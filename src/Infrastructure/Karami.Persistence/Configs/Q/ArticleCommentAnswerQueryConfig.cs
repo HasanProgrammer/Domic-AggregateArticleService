@@ -9,10 +9,14 @@ public class ArticleCommentAnswerQueryConfig : BaseEntityQueryConfig<ArticleComm
 {
     public override void Configure(EntityTypeBuilder<ArticleCommentAnswerQuery> builder)
     {
-        builder.ToTable("ArticleCommentAnswers");
-        
         base.Configure(builder);
 
+        /*-----------------------------------------------------------*/
+        
+        //Configs
+        
+        builder.ToTable("ArticleCommentAnswers");
+        
         /*-----------------------------------------------------------*/
         
         //Relations

@@ -9,10 +9,14 @@ public class CategoryQueryConfig : BaseEntityQueryConfig<CategoryQuery, string>
 {
     public override void Configure(EntityTypeBuilder<CategoryQuery> builder)
     {
-        builder.ToTable("Categories");
-        
         base.Configure(builder);
 
+        /*-----------------------------------------------------------*/
+        
+        //Configs
+        
+        builder.ToTable("Categories");
+        
         /*-----------------------------------------------------------*/
         
         //Relations

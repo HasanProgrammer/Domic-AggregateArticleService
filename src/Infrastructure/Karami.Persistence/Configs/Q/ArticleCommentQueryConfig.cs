@@ -8,10 +8,14 @@ namespace Karami.Persistence.Configs.Q;
 public class ArticleCommentQueryConfig : BaseEntityQueryConfig<ArticleCommentQuery, string>
 {
     public override void Configure(EntityTypeBuilder<ArticleCommentQuery> builder)
-    {
-        builder.ToTable("ArticleComments");
-        
+    { 
         base.Configure(builder);
+        
+        /*-----------------------------------------------------------*/
+        
+        //Configs
+        
+        builder.ToTable("ArticleComments");
         
         /*-----------------------------------------------------------*/
         
