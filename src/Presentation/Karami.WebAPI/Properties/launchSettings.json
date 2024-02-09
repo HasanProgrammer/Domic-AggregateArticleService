@@ -16,6 +16,9 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:3005;http://localhost:3004",
       "environmentVariables": {
+        "Elastic-Host": "http://localhost:9200",
+        "Elastic-Username": "",
+        "Elastic-Password": "",
         "E-RabbitMQ-Host": "localhost",
         "E-RabbitMQ-Port": "5672",
         "E-RabbitMQ-Username": "guest",
@@ -27,7 +30,7 @@
         "RedisConnectionString": "",
         "MongoConnectionString": "",
         "C-SqlServerConnectionString": "",
-        "Q-SqlServerConnectionString": "127.0.0.1,1433;Database=Q-AggregateArticleService;User ID=sa;Password=Hasan313@@313!!;MultipleActiveResultSets=true;Integrated Security=false;",
+        "Q-SqlServerConnectionString": "Server=127.0.0.1,1433;Database=Q-AggregateArticleService;User ID=sa;Password=Hasan313@@313!!;MultipleActiveResultSets=true;Integrated Security=false;",
         "Host": "localhost",
         "Port": "3005",
         "ASPNETCORE_ENVIRONMENT": "Development"
