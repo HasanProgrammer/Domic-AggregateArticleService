@@ -23,11 +23,10 @@ builder.RegisterHelpers();
 builder.RegisterELK();
 builder.RegisterEntityFrameworkCoreQuery<SQLContext>();
 builder.RegisterQueryRepositories();
-builder.RegisterMessageBroker();
-builder.RegisterJobs();
 builder.RegisterRedisCaching();
 builder.RegisterCommandQueryUseCases();
 builder.RegisterGrpcServer();
+builder.RegisterMessageBroker();
 builder.RegisterEventsSubscriber();
 builder.RegisterServices();
 
