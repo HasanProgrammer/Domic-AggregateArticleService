@@ -14,9 +14,9 @@ public class CreateArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
 
     public CreateArticleCommentConsumerEventBusHandler(IArticleCommentQueryRepository articleCommentQueryRepository) 
         => _articleCommentQueryRepository = articleCommentQueryRepository;
-    
+
+    [TransactionIsolationLevel(Level = IsolationLevel.ReadUncommitted)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticleComments}|{Cache.AggregateArticles}")]
-    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
     public void Handle(ArticleCommentCreated @event)
     {
         var targetComment = _articleCommentQueryRepository.FindById(@event.Id);

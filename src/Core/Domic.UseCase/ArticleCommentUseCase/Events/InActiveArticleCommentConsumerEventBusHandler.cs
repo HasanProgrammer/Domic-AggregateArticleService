@@ -22,8 +22,8 @@ public class InActiveArticleCommentConsumerEventBusHandler : IConsumerEventBusHa
         _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
     }
 
+    [TransactionIsolationLevel(Level = IsolationLevel.ReadUncommitted)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticleComments}|{Cache.AggregateArticles}")]
-    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
     public void Handle(ArticleCommentInActived @event)
     {
         var targetComment = _articleCommentQueryRepository.FindByIdEagerLoading(@event.Id);

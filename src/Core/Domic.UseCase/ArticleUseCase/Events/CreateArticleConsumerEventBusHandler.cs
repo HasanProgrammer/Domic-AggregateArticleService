@@ -22,7 +22,6 @@ public class CreateArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
         _articleQueryRepository = articleQueryRepository;
     }
     
-    [WithTransaction]
     [WithCleanCache(Keies = Cache.AggregateArticles)]
     public void Handle(ArticleCreated @event)
     {

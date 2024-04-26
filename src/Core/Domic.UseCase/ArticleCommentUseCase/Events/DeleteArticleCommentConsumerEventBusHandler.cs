@@ -22,8 +22,8 @@ public class DeleteArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
         _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
     }
 
+    [TransactionIsolationLevel(Level = IsolationLevel.ReadUncommitted)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticleComments}|{Cache.AggregateArticles}")]
-    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
     public void Handle(ArticleCommentDeleted @event)
     {
         var targetComment = _articleCommentQueryRepository.FindByIdEagerLoading(@event.Id);

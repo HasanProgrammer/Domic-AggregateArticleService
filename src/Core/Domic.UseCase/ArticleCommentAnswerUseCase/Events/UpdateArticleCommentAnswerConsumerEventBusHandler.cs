@@ -15,8 +15,8 @@ public class UpdateArticleCommentAnswerConsumerEventBusHandler : IConsumerEventB
         IArticleCommentAnswerQueryRepository articleCommentAnswerQueryRepository
     ) => _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
 
+    [TransactionIsolationLevel(Level = IsolationLevel.ReadUncommitted)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticleCommentAnswers}|{Cache.AggregateArticles}")]
-    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
     public void Handle(ArticleCommentAnswerUpdated @event)
     {
         var targetAnswer = _articleCommentAnswerQueryRepository.FindById(@event.Id);

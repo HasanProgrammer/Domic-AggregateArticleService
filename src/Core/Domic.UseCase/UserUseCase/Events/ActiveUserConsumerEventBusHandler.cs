@@ -14,7 +14,7 @@ public class ActiveUserConsumerEventBusHandler : IConsumerEventBusHandler<UserAc
     public ActiveUserConsumerEventBusHandler(IUserQueryRepository userQueryRepository)
         => _userQueryRepository = userQueryRepository;
 
-    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
+    [TransactionIsolationLevel(Level = IsolationLevel.ReadUncommitted)]
     public void Handle(UserActived @event)
     {
         var targetUser = _userQueryRepository.FindById(@event.Id);

@@ -15,8 +15,8 @@ public class CreateArticleCommentAnswerConsumerEventBusHandler : IConsumerEventB
     public CreateArticleCommentAnswerConsumerEventBusHandler(
         IArticleCommentAnswerQueryRepository articleCommentAnswerQueryRepository
     ) => _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
-    
-    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
+
+    [TransactionIsolationLevel(Level = IsolationLevel.ReadUncommitted)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticleCommentAnswers}|{Cache.AggregateArticles}")]
     public void Handle(ArticleCommentAnswerCreated @event)
     {

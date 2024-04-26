@@ -28,7 +28,6 @@ public class DeleteArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
         _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
     }
     
-    [WithTransaction]
     [WithCleanCache(Keies = $"{Cache.AggregateArticles}")]
     public void Handle(ArticleDeleted @event)
     {
