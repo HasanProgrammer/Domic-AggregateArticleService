@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domic.Infrastructure.Implementations.Domain.Repositories.Q;
 
-public class ConsumerEventQueryRepository(SQLContext context) : IConsumerEventQueryRepository
+public class ConsumerEventQueryRepository(SQLContext context) : IConsumerEventRepository
 {
     public Task<ConsumerEvent> FindByIdAsync(object id, CancellationToken cancellationToken)
         => context.ConsumerEvents.FirstOrDefaultAsync(@event => @event.Id == id as string, cancellationToken);
