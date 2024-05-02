@@ -21,6 +21,7 @@ public class UpdateArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
         _articleQueryRepository = articleQueryRepository;
     }
     
+    [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = Cache.AggregateArticles)]
     public void Handle(ArticleUpdated @event)
     {

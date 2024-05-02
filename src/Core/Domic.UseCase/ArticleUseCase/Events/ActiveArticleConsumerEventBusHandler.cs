@@ -25,6 +25,7 @@ public class ActiveArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
         _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
     }
 
+    [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = Cache.AggregateArticles)]
     public void Handle(ArticleActived @event)
     {

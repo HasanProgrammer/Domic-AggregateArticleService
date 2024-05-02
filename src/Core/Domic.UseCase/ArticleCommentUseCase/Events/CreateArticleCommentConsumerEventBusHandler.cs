@@ -1,5 +1,4 @@
-﻿using System.Data;
-using Domic.Core.Common.ClassConsts;
+﻿using Domic.Core.Common.ClassConsts;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Domain.ArticleComment.Contracts.Interfaces;
@@ -15,7 +14,7 @@ public class CreateArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
     public CreateArticleCommentConsumerEventBusHandler(IArticleCommentQueryRepository articleCommentQueryRepository) 
         => _articleCommentQueryRepository = articleCommentQueryRepository;
 
-    [TransactionIsolationLevel(Level = IsolationLevel.ReadUncommitted)]
+    [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticleComments}|{Cache.AggregateArticles}")]
     public void Handle(ArticleCommentCreated @event)
     {

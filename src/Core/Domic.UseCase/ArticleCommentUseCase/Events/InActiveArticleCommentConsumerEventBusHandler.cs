@@ -1,5 +1,4 @@
-﻿using System.Data;
-using Domic.Core.Common.ClassConsts;
+﻿using Domic.Core.Common.ClassConsts;
 using Domic.Core.Domain.Enumerations;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
@@ -22,7 +21,7 @@ public class InActiveArticleCommentConsumerEventBusHandler : IConsumerEventBusHa
         _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
     }
 
-    [TransactionIsolationLevel(Level = IsolationLevel.ReadUncommitted)]
+    [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticleComments}|{Cache.AggregateArticles}")]
     public void Handle(ArticleCommentInActived @event)
     {

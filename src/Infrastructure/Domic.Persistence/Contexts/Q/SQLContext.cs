@@ -29,7 +29,7 @@ public partial class SQLContext
     public DbSet<ArticleCommentQuery> Comments { get; set; }
     public DbSet<ArticleCommentAnswerQuery> Answers { get; set; }
     public DbSet<CategoryQuery> Categories { get; set; }
-    public DbSet<ConsumerEvent> ConsumerEvents { get; set; }
+    public DbSet<ConsumerEventQuery> ConsumerEvents { get; set; }
 }
 
 /*Config*/
@@ -45,6 +45,6 @@ public partial class SQLContext
         builder.ApplyConfiguration(new ArticleCommentQueryConfig());
         builder.ApplyConfiguration(new ArticleCommentAnswerQueryConfig());
         builder.ApplyConfiguration(new CategoryQueryConfig());
-        builder.ApplyConfiguration(new ConsumerEventConfig());
+        builder.ApplyConfiguration(new ConsumerEventQueryConfig());
     }
 }

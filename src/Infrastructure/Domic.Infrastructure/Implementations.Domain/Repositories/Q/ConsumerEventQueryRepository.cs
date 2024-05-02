@@ -5,10 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domic.Infrastructure.Implementations.Domain.Repositories.Q;
 
-public class ConsumerEventQueryRepository(SQLContext context) : IConsumerEventRepository
+public class ConsumerEventQueryRepository(SQLContext context) : IQueryConsumerEventRepository
 {
-    public Task<ConsumerEvent> FindByIdAsync(object id, CancellationToken cancellationToken)
+    public ConsumerEventQuery FindById(object id) 
+        => context.ConsumerEvents.FirstOrDefault(@event => @event.Id == id as string);
+    
+    public Task<ConsumerEventQuery> FindByIdAsync(object id, CancellationToken cancellationToken) 
         => context.ConsumerEvents.FirstOrDefaultAsync(@event => @event.Id == id as string, cancellationToken);
 
-    public void Add(ConsumerEvent entity) => context.ConsumerEvents.Add(entity);
+    public void Add(ConsumerEventQuery entity) => context.ConsumerEvents.Add(entity);
 }

@@ -32,6 +32,7 @@ public class DeleteCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
         _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
     }
     
+    [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticles}|{Cache.AggregateArticles}")]
     public void Handle(CategoryDeleted @event)
     {

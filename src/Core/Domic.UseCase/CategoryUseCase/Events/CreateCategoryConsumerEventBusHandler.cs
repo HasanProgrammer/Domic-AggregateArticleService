@@ -14,6 +14,7 @@ public class CreateCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
     public CreateCategoryConsumerEventBusHandler(ICategoryQueryRepository categoryQueryRepository) 
         => _categoryQueryRepository = categoryQueryRepository;
     
+    [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticles}|{Cache.AggregateArticles}")]
     public void Handle(CategoryCreated @event)
     {

@@ -13,6 +13,7 @@ public class UpdateCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
     public UpdateCategoryConsumerEventBusHandler(ICategoryQueryRepository categoryQueryRepository) 
         => _categoryQueryRepository = categoryQueryRepository;
     
+    [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticles}|{Cache.AggregateArticles}")]
     public void Handle(CategoryUpdated @event)
     {
