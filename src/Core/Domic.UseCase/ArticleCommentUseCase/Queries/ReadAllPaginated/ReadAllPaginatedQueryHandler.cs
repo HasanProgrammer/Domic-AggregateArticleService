@@ -6,11 +6,13 @@ using Domic.Core.UseCase.Contracts.Interfaces;
 
 namespace Domic.UseCase.ArticleCommentUseCase.Queries.ReadAllPaginated;
 
-public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery, PaginatedCollection<ArticleCommentsViewModel>>
+public class ReadAllPaginatedQueryHandler : 
+    IQueryHandler<ReadAllPaginatedQuery, PaginatedCollection<ArticleCommentsViewModel>>
 {
-    private readonly ICacheService _cacheService;
+    private readonly IInternalDistributedCacheMediator _distributedCacheMediator;
 
-    public ReadAllPaginatedQueryHandler(ICacheService cacheService) => _cacheService = cacheService;
+    public ReadAllPaginatedQueryHandler(IInternalDistributedCacheMediator distributedCacheMediator) 
+        => _distributedCacheMediator = distributedCacheMediator;
 
     [WithValidation]
     public async Task<PaginatedCollection<ArticleCommentsViewModel>> HandleAsync(ReadAllPaginatedQuery query, 
@@ -20,7 +22,7 @@ public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery,
         var pageNumber   = Convert.ToInt32(query.PageNumber);
         var countPerPage = Convert.ToInt32(query.CountPerPage);
         
-        var articles = await _cacheService.GetAsync<IEnumerable<ArticleCommentsViewModel>>(cancellationToken);
+        var articles = await _distributedCacheMediator.GetAsync<IEnumerable<ArticleCommentsViewModel>>(cancellationToken);
 
         return articles.ToPaginatedCollection(articles.Count(), countPerPage, pageNumber, paginating: true);
     }

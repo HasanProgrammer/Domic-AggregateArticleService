@@ -9,7 +9,7 @@ using Domic.UseCase.ArticleUseCase.DTOs.ViewModels;
 
 namespace Domic.UseCase.ArticleUseCase.Caches;
 
-public class ArticlesEagerLoadingMemoryCache : IMemoryCacheSetter<IEnumerable<ArticlesViewModel>>
+public class ArticlesEagerLoadingMemoryCache : IInternalDistributedCacheHandler<IEnumerable<ArticlesViewModel>>
 {
     private readonly IArticleQueryRepository _articleQueryRepository;
 

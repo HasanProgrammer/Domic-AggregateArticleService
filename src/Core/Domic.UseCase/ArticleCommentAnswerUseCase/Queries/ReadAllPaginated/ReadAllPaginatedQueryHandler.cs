@@ -9,9 +9,10 @@ namespace Domic.UseCase.ArticleCommentAnswerUseCase.Queries.ReadAllPaginated;
 public class ReadAllPaginatedQueryHandler : 
     IQueryHandler<ReadAllPaginatedQuery, PaginatedCollection<ArticleCommentAnswersViewModel>>
 {
-    private readonly ICacheService _cacheService;
+    private readonly IInternalDistributedCacheMediator _distributedCacheMediator;
 
-    public ReadAllPaginatedQueryHandler(ICacheService cacheService) => _cacheService = cacheService;
+    public ReadAllPaginatedQueryHandler(IInternalDistributedCacheMediator distributedCacheMediator)
+        => _distributedCacheMediator = distributedCacheMediator;
 
     [WithValidation]
     public async Task<PaginatedCollection<ArticleCommentAnswersViewModel>> HandleAsync(ReadAllPaginatedQuery query, 
@@ -21,7 +22,7 @@ public class ReadAllPaginatedQueryHandler :
         var pageNumber   = Convert.ToInt32(query.PageNumber);
         var countPerPage = Convert.ToInt32(query.CountPerPage);
         
-        var articles = await _cacheService.GetAsync<IEnumerable<ArticleCommentAnswersViewModel>>(cancellationToken);
+        var articles = await _distributedCacheMediator.GetAsync<IEnumerable<ArticleCommentAnswersViewModel>>(cancellationToken);
 
         return articles.ToPaginatedCollection(articles.Count(), countPerPage, pageNumber, paginating: true);
     }
