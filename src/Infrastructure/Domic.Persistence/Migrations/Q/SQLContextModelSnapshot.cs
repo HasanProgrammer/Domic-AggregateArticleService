@@ -22,10 +22,13 @@ namespace Domic.Persistence.Migrations.Q
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Domic.Core.Domain.Entities.ConsumerEvent", b =>
+            modelBuilder.Entity("Domic.Core.Domain.Entities.ConsumerEventQuery", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CountOfRetry")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt_EnglishDate")
                         .HasColumnType("datetime2");
