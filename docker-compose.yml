@@ -28,7 +28,8 @@ services:
       - I-RabbitMQ-Port=
       - I-RabbitMQ-Username=
       - I-RabbitMQ-Password=
-      - RedisConnectionString=
+      - InternalRedisConnectionString=
+      - ExternalRedisConnectionString=
       - MongoConnectionString=
       - C-SqlServerConnectionString=
       - Q-SqlServerConnectionString=Server=domic.aggregate.article.sql.server,1433;Database=AggregateArticleService;User ID=sa;Password=Hasan313@@313!!;MultipleActiveResultSets=true;Integrated Security=false;
