@@ -5,7 +5,11 @@
     "Throttle": [
       {
         "Active": false,
-        "Topic": "یه چیزی",
+        "Topic": "Article",
+        "Limitation": 1000
+      },
+      {
+        "Topic": "AggregateArticleService-Retry-Article",
         "Limitation": 1000
       }
     ]
