@@ -4,7 +4,7 @@ using Domic.Core.Domain.Contracts.Abstracts;
 
 namespace Domic.Domain.User.Events;
 
-[MessageBroker(Queue = Broker.AggregateArticle_User_Queue)]
+[EventConfig(Queue = Broker.AggregateArticle_User_Queue)]
 public class UserUpdated : UpdateDomainEvent<string>
 {
     public required string FirstName { get; init; }

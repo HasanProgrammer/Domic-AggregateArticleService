@@ -4,7 +4,7 @@ using Domic.Core.Domain.Contracts.Abstracts;
 
 namespace Domic.Domain.Article.Events;
 
-[MessageBroker(Queue = Broker.AggregateArticle_Article_Queue)]
+[EventConfig(Queue = Broker.AggregateArticle_Article_Queue)]
 public class ArticleUpdated : UpdateDomainEvent<string>
 {
     //Article info ( Aggregte entity | Aggregte root )

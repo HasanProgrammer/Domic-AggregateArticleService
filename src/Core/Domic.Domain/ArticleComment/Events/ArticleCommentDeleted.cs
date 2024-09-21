@@ -4,7 +4,7 @@ using Domic.Core.Domain.Contracts.Abstracts;
 
 namespace Domic.Domain.ArticleComment.Events;
 
-[MessageBroker(Queue = Broker.AggregateArticle_ArticleComment_Queue)]
+[EventConfig(Queue = Broker.AggregateArticle_ArticleComment_Queue)]
 public class ArticleCommentDeleted : UpdateDomainEvent<string>
 {
     
