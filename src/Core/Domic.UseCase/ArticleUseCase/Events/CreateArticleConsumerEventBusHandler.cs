@@ -58,4 +58,6 @@ public class CreateArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
             _fileQueryRepository.Add(newFile);
         }
     }
+
+    public void AfterTransactionHandle(ArticleCreated @event){}
 }

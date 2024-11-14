@@ -34,4 +34,6 @@ public class CreateCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
             _categoryQueryRepository.Add(newCategory);
         }
     }
+
+    public void AfterTransactionHandle(CategoryCreated @event){}
 }

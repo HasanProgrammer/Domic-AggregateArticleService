@@ -36,4 +36,6 @@ public class CreateArticleCommentAnswerConsumerEventBusHandler : IConsumerEventB
             _articleCommentAnswerQueryRepository.Add(newAnswer);
         }
     }
+
+    public void AfterTransactionHandle(ArticleCommentAnswerCreated @event){}
 }

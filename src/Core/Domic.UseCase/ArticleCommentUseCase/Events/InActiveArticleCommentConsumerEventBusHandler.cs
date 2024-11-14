@@ -49,4 +49,6 @@ public class InActiveArticleCommentConsumerEventBusHandler : IConsumerEventBusHa
             }
         }
     }
+
+    public void AfterTransactionHandle(ArticleCommentInActived @event){}
 }

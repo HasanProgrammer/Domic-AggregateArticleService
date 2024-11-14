@@ -59,4 +59,6 @@ public class UpdateArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
 
         _articleQueryRepository.Change(targetArticle);
     }
+
+    public void AfterTransactionHandle(ArticleUpdated @event){}
 }

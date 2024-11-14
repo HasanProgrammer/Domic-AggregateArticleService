@@ -61,4 +61,6 @@ public class InActiveArticleConsumerEventBusHandler : IConsumerEventBusHandler<A
             }
         }
     }
+
+    public void AfterTransactionHandle(ArticleInActived @event){}
 }

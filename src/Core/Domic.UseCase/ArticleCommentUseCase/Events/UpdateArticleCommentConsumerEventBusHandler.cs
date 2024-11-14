@@ -30,4 +30,6 @@ public class UpdateArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
             _articleCommentQueryRepository.Change(targetComment);
         }
     }
+
+    public void AfterTransactionHandle(ArticleCommentUpdated @event){}
 }

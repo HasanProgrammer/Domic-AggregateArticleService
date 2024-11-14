@@ -32,4 +32,6 @@ public class DeleteArticleCommentAnswerConsumerEventBusHandler : IConsumerEventB
             _articleCommentAnswerQueryRepository.Change(targetAnswer);
         }
     }
+
+    public void AfterTransactionHandle(ArticleCommentAnswerDeleted @event){}
 }

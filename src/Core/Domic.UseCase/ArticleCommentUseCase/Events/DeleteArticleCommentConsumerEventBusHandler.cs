@@ -49,4 +49,6 @@ public class DeleteArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
             }
         }
     }
+
+    public void AfterTransactionHandle(ArticleCommentDeleted @event){}
 }

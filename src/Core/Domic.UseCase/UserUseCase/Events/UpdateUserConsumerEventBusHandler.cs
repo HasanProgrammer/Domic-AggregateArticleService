@@ -30,4 +30,6 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
             
         _userQueryRepository.Change(targetUser);
     }
+
+    public void AfterTransactionHandle(UserUpdated @event){}
 }

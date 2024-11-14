@@ -31,4 +31,6 @@ public class UpdateArticleCommentAnswerConsumerEventBusHandler : IConsumerEventB
             _articleCommentAnswerQueryRepository.Change(targetAnswer);
         }
     }
+
+    public void AfterTransactionHandle(ArticleCommentAnswerUpdated @event){}
 }

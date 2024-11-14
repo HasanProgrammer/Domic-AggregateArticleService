@@ -49,4 +49,6 @@ public class ActiveArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
             }
         }
     }
+
+    public void AfterTransactionHandle(ArticleCommentActived @event){}
 }

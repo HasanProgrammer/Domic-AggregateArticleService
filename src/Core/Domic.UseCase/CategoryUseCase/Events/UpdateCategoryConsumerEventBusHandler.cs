@@ -27,4 +27,6 @@ public class UpdateCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
 
         _categoryQueryRepository.Change(targetCategory);
     }
+
+    public void AfterTransactionHandle(CategoryUpdated @event){}
 }

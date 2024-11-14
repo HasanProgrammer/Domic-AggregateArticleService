@@ -19,4 +19,6 @@ public class DeleteUserConsumerEventBusHandler : IConsumerEventBusHandler<UserDe
     {
         
     }
+
+    public void AfterTransactionHandle(UserDeleted @event){}
 }

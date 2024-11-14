@@ -35,4 +35,6 @@ public class CreateArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
             _articleCommentQueryRepository.Add(newComment);
         }
     }
+
+    public void AfterTransactionHandle(ArticleCommentCreated @event){}
 }
