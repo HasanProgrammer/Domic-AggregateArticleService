@@ -13,7 +13,9 @@ public class CreateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserCr
 
     public CreateUserConsumerEventBusHandler(IUserQueryRepository userQueryRepository) 
         => _userQueryRepository = userQueryRepository;
-    
+
+    public void BeforeHandle(UserCreated @event){}
+
     [WithCleanCache(Keies = Cache.AggregateArticles)]
     [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(UserCreated @event)
@@ -36,5 +38,5 @@ public class CreateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserCr
         }
     }
 
-    public void AfterTransactionHandle(UserCreated @event){}
+    public void AfterHandle(UserCreated @event){}
 }

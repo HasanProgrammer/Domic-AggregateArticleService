@@ -14,6 +14,8 @@ public class InActiveUserConsumerEventBusHandler : IConsumerEventBusHandler<User
     public InActiveUserConsumerEventBusHandler(IUserQueryRepository userQueryRepository) 
         => _userQueryRepository = userQueryRepository;
 
+    public void BeforeHandle(UserInActived @event){}
+
     [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(UserInActived @event)
     {
@@ -31,5 +33,5 @@ public class InActiveUserConsumerEventBusHandler : IConsumerEventBusHandler<User
         }
     }
 
-    public void AfterTransactionHandle(UserInActived @event){}
+    public void AfternHandle(UserInActived @event){}
 }

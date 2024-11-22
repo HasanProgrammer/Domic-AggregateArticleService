@@ -20,7 +20,9 @@ public class UpdateArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
         _fileQueryRepository    = fileQueryRepository;
         _articleQueryRepository = articleQueryRepository;
     }
-    
+
+    public void BeforeHandle(ArticleUpdated @event){}
+
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = Cache.AggregateArticles)]
     public void Handle(ArticleUpdated @event)
@@ -60,5 +62,5 @@ public class UpdateArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
         _articleQueryRepository.Change(targetArticle);
     }
 
-    public void AfterTransactionHandle(ArticleUpdated @event){}
+    public void AfterHandle(ArticleUpdated @event){}
 }

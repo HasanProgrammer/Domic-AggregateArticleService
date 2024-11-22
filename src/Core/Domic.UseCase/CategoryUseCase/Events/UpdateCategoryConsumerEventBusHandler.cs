@@ -12,7 +12,9 @@ public class UpdateCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
 
     public UpdateCategoryConsumerEventBusHandler(ICategoryQueryRepository categoryQueryRepository) 
         => _categoryQueryRepository = categoryQueryRepository;
-    
+
+    public void BeforeHandle(CategoryUpdated @event){}
+
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticles}|{Cache.AggregateArticles}")]
     public void Handle(CategoryUpdated @event)
@@ -28,5 +30,5 @@ public class UpdateCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
         _categoryQueryRepository.Change(targetCategory);
     }
 
-    public void AfterTransactionHandle(CategoryUpdated @event){}
+    public void AfterHandle(CategoryUpdated @event){}
 }

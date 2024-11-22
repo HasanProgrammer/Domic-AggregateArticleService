@@ -12,7 +12,9 @@ public class DeleteUserConsumerEventBusHandler : IConsumerEventBusHandler<UserDe
 
     public DeleteUserConsumerEventBusHandler(IUserQueryRepository userQueryRepository) 
         => _userQueryRepository = userQueryRepository;
-    
+
+    public void BeforeHandle(UserDeleted @event){}
+
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = Cache.AggregateArticles)]
     public void Handle(UserDeleted @event)
@@ -20,5 +22,5 @@ public class DeleteUserConsumerEventBusHandler : IConsumerEventBusHandler<UserDe
         
     }
 
-    public void AfterTransactionHandle(UserDeleted @event){}
+    public void AfterHandle(UserDeleted @event){}
 }

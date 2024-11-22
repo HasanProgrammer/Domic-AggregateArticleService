@@ -21,6 +21,8 @@ public class InActiveArticleCommentConsumerEventBusHandler : IConsumerEventBusHa
         _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
     }
 
+    public void BeforeHandle(ArticleCommentInActived @event){}
+
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticleComments}|{Cache.AggregateArticles}")]
     public void Handle(ArticleCommentInActived @event)
@@ -50,5 +52,5 @@ public class InActiveArticleCommentConsumerEventBusHandler : IConsumerEventBusHa
         }
     }
 
-    public void AfterTransactionHandle(ArticleCommentInActived @event){}
+    public void AfterHandle(ArticleCommentInActived @event){}
 }

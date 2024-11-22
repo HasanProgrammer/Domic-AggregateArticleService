@@ -13,7 +13,9 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
 
     public UpdateUserConsumerEventBusHandler(IUserQueryRepository userQueryRepository) 
         => _userQueryRepository = userQueryRepository;
-    
+
+    public void BeforeHandle(UserUpdated @event){}
+
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = Cache.AggregateArticles)]
     public void Handle(UserUpdated @event)
@@ -31,5 +33,5 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
         _userQueryRepository.Change(targetUser);
     }
 
-    public void AfterTransactionHandle(UserUpdated @event){}
+    public void AfterHandle(UserUpdated @event){}
 }

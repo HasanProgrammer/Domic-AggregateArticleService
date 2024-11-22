@@ -21,6 +21,8 @@ public class DeleteArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
         _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
     }
 
+    public void BeforeHandle(ArticleCommentDeleted @event){}
+
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticleComments}|{Cache.AggregateArticles}")]
     public void Handle(ArticleCommentDeleted @event)
@@ -50,5 +52,5 @@ public class DeleteArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
         }
     }
 
-    public void AfterTransactionHandle(ArticleCommentDeleted @event){}
+    public void AfterHandle(ArticleCommentDeleted @event){}
 }
