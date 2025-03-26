@@ -7,4 +7,5 @@ namespace Domic.Domain.ArticleComment.Events;
 [EventConfig(Queue = Broker.AggregateArticle_ArticleComment_Queue)]
 public class ArticleCommentInActived : UpdateDomainEvent<string>
 {
+    
 }
