@@ -7,20 +7,16 @@ using Domic.Domain.Category.Events;
 
 namespace Domic.UseCase.CategoryUseCase.Events;
 
-public class CreateCategoryConsumerEventBusHandler : IConsumerEventBusHandler<CategoryCreated>
+public class CreateCategoryConsumerEventBusHandler(ICategoryQueryRepository categoryQueryRepository) : IConsumerEventBusHandler<CategoryCreated>
 {
-    private readonly ICategoryQueryRepository _categoryQueryRepository;
-
-    public CreateCategoryConsumerEventBusHandler(ICategoryQueryRepository categoryQueryRepository) 
-        => _categoryQueryRepository = categoryQueryRepository;
-
-    public void BeforeHandle(CategoryCreated @event){}
+    public Task BeforeHandleAsync(CategoryCreated @event, CancellationToken cancellationToken) 
+        => Task.CompletedTask;
 
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticles}|{Cache.AggregateArticles}")]
-    public void Handle(CategoryCreated @event)
+    public async Task HandleAsync(CategoryCreated @event, CancellationToken cancellationToken)
     {
-        var targetCategory = _categoryQueryRepository.FindById(@event.Id);
+        var targetCategory = await categoryQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 
         if (targetCategory is null)
         {
@@ -33,9 +29,10 @@ public class CreateCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
                 CreatedAt_PersianDate = @event.CreatedAt_PersianDate
             };
         
-            _categoryQueryRepository.Add(newCategory);
+            await categoryQueryRepository.AddAsync(newCategory, cancellationToken);
         }
     }
 
-    public void AfterHandle(CategoryCreated @event){}
+    public Task AfterHandleAsync(CategoryCreated @event, CancellationToken cancellationToken) 
+        => Task.CompletedTask;
 }

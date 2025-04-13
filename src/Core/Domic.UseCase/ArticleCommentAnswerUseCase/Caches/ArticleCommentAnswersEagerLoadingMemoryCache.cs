@@ -3,34 +3,26 @@ using Domic.Core.Domain.Enumerations;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Domain.ArticleCommentAnswer.Contracts.Interfaces;
-using Domic.UseCase.ArticleCommentAnswerUseCase.DTOs.ViewModels;
+using Domic.UseCase.ArticleCommentAnswerUseCase.DTOs;
 
 namespace Domic.UseCase.ArticleCommentAnswerUseCase.Caches;
 
-public class ArticleCommentAnswersEagerLoadingMemoryCache : 
-    IInternalDistributedCacheHandler<IEnumerable<ArticleCommentAnswersViewModel>>
+public class ArticleCommentAnswersEagerLoadingMemoryCache(
+    IArticleCommentAnswerQueryRepository articleCommentAnswerQueryRepository
+) : IInternalDistributedCacheHandler<List<ArticleCommentAnswerDto>>
 {
-    private readonly IArticleCommentAnswerQueryRepository _articleCommentAnswerQueryRepository;
-
-    public ArticleCommentAnswersEagerLoadingMemoryCache(
-        IArticleCommentAnswerQueryRepository articleCommentAnswerQueryRepository
-    ) => _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
-
     [Config(Key = Cache.AggregateArticleCommentAnswers, Ttl = 4 * 24 * 60)]
-    public async Task<IEnumerable<ArticleCommentAnswersViewModel>> SetAsync(CancellationToken cancellationToken)
-    {
-        var answers = await _articleCommentAnswerQueryRepository.FindAllEagerLoadingByProjectionAsync(answer =>
-            new ArticleCommentAnswersViewModel {
-                Id            = answer.Id                                          ,
-                OwnerFullName = answer.User.FirstName + " " + answer.User.LastName ,
-                ArticleTitle  = answer.Comment.Article.Title                       ,
-                Answer        = answer.Answer                                      ,
-                IsActive      = answer.IsActive == IsActive.Active                 ,
-                CreatedAt     = answer.CreatedAt_PersianDate 
+    public Task<List<ArticleCommentAnswerDto>> SetAsync(CancellationToken cancellationToken) 
+        => articleCommentAnswerQueryRepository.FindAllByProjectionAsync(answer =>
+            new ArticleCommentAnswerDto {
+                Id                = answer.Id                                          ,    
+                CreatedBy         = answer.User.Id                                     ,
+                CreatedByFullName = answer.User.FirstName + " " + answer.User.LastName ,
+                ArticleTitle      = answer.Comment.Article.Title                       ,
+                Answer            = answer.Answer                                      ,
+                IsActive          = answer.IsActive == IsActive.Active                 ,
+                CreatedAt         = answer.CreatedAt_PersianDate 
             },
             cancellationToken
         );
-
-        return answers;
-    }
 }

@@ -1,27 +1,34 @@
 ﻿using Domic.Domain.User.Contracts.Interfaces;
 using Domic.Domain.User.Entities;
 using Domic.Persistence.Contexts.Q;
+using Microsoft.EntityFrameworkCore;
 
 namespace Domic.Infrastructure.Implementations.Domain.Repositories.Q;
 
 //Config
-public partial class UserQueryRepository : IUserQueryRepository
-{
-    private readonly SQLContext _sqlContext;
-
-    public UserQueryRepository(SQLContext sqlContext) => _sqlContext = sqlContext;
-}
+public partial class UserQueryRepository(SQLContext sqlContext) : IUserQueryRepository;
 
 //Transaction
 public partial class UserQueryRepository
 {
-    public void Add(UserQuery entity) => _sqlContext.Users.Add(entity);
+    public Task AddAsync(UserQuery entity, CancellationToken cancellationToken) 
+    {
+        sqlContext.Users.Add(entity);
 
-    public void Change(UserQuery entity) => _sqlContext.Users.Update(entity);
+        return Task.CompletedTask;
+    }
+
+    public Task ChangeAsync(UserQuery entity, CancellationToken cancellationToken)
+    {
+        sqlContext.Users.Update(entity);
+
+        return Task.CompletedTask;
+    }
 }
 
 //Query
 public partial class UserQueryRepository
 {
-    public UserQuery FindById(object id) => _sqlContext.Users.FirstOrDefault(user => user.Id.Equals(id));
+    public Task<UserQuery> FindByIdAsync(object id, CancellationToken cancellationToken) 
+        => sqlContext.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Id == id as string, cancellationToken);
 }

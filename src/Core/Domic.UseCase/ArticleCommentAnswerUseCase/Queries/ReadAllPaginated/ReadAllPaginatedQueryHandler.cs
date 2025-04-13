@@ -1,29 +1,29 @@
-using Domic.UseCase.ArticleCommentAnswerUseCase.DTOs.ViewModels;
+using Domic.UseCase.ArticleCommentAnswerUseCase.DTOs;
 using Domic.Core.Common.ClassExtensions;
 using Domic.Core.Common.ClassHelpers;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
-
 namespace Domic.UseCase.ArticleCommentAnswerUseCase.Queries.ReadAllPaginated;
 
-public class ReadAllPaginatedQueryHandler : 
-    IQueryHandler<ReadAllPaginatedQuery, PaginatedCollection<ArticleCommentAnswersViewModel>>
+public class ReadAllPaginatedQueryHandler(
+    IInternalDistributedCacheMediator distributedCacheMediator
+) : IQueryHandler<ReadAllPaginatedQuery, PaginatedCollection<ArticleCommentAnswerDto>>
 {
-    private readonly IInternalDistributedCacheMediator _distributedCacheMediator;
-
-    public ReadAllPaginatedQueryHandler(IInternalDistributedCacheMediator distributedCacheMediator)
-        => _distributedCacheMediator = distributedCacheMediator;
-
     [WithValidation]
-    public async Task<PaginatedCollection<ArticleCommentAnswersViewModel>> HandleAsync(ReadAllPaginatedQuery query, 
+    public async Task<PaginatedCollection<ArticleCommentAnswerDto>> HandleAsync(ReadAllPaginatedQuery query, 
         CancellationToken cancellationToken
     )
     {
-        var pageNumber   = Convert.ToInt32(query.PageNumber);
-        var countPerPage = Convert.ToInt32(query.CountPerPage);
-        
-        var articles = await _distributedCacheMediator.GetAsync<IEnumerable<ArticleCommentAnswersViewModel>>(cancellationToken);
+        var articles = await distributedCacheMediator.GetAsync<List<ArticleCommentAnswerDto>>(cancellationToken);
 
-        return articles.ToPaginatedCollection(articles.Count(), countPerPage, pageNumber, paginating: true);
+        articles = articles.Where(article => 
+            ( string.IsNullOrEmpty(query.UserId) || article.CreatedBy == query.UserId ) &&
+            ( string.IsNullOrEmpty(query.SearchText) || article.CreatedByFullName.Contains(query.SearchText) ) &&
+            ( string.IsNullOrEmpty(query.SearchText) || article.ArticleTitle.Contains(query.SearchText) )
+        ).ToList();
+
+        return articles.ToPaginatedCollection(
+            articles.Count(), query.CountPerPage.Value, query.PageNumber.Value, paginating: true
+        );
     }
 }

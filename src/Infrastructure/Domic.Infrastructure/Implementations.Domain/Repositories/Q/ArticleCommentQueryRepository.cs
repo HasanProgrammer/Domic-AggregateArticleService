@@ -7,47 +7,42 @@ using Microsoft.EntityFrameworkCore;
 namespace Domic.Infrastructure.Implementations.Domain.Repositories.Q;
 
 //Config
-public partial class ArticleCommentQueryRepository : IArticleCommentQueryRepository
-{
-    private readonly SQLContext _sqlContext;
-
-    public ArticleCommentQueryRepository(SQLContext sqlContext) => _sqlContext = sqlContext;
-}
+public partial class ArticleCommentQueryRepository(SQLContext sqlContext) : IArticleCommentQueryRepository;
 
 //Transaction
 public partial class ArticleCommentQueryRepository
 {
-    public void Add(ArticleCommentQuery entity) => _sqlContext.Comments.Add(entity);
+    public Task AddAsync(ArticleCommentQuery entity, CancellationToken cancellationToken)
+    {
+        sqlContext.Comments.Add(entity);
 
-    public void Change(ArticleCommentQuery entity) => _sqlContext.Comments.Update(entity);
+        return Task.CompletedTask;
+    }
+
+    public Task ChangeAsync(ArticleCommentQuery entity, CancellationToken cancellationToken)
+    {
+        sqlContext.Comments.Update(entity);
+
+        return Task.CompletedTask;
+    }
+
+    public Task ChangeRangeAsync(IEnumerable<ArticleCommentQuery> entities, CancellationToken cancellationToken)
+    {
+        sqlContext.Comments.UpdateRange(entities);
+
+        return Task.CompletedTask;
+    }
 }
 
 //Query
 public partial class ArticleCommentQueryRepository
 {
-    public ArticleCommentQuery FindById(object id) => _sqlContext.Comments.FirstOrDefault(comment => comment.Id.Equals(id));
+    public Task<ArticleCommentQuery> FindByIdAsync(object id, CancellationToken cancellationToken)
+        => sqlContext.Comments.AsNoTracking().FirstOrDefaultAsync(comment => comment.Id == id as string, cancellationToken);
 
-    public ArticleCommentQuery FindByIdEagerLoading(object id) =>
-        _sqlContext.Comments.Where(comment => comment.Id.Equals(id))
-                            .Include(comment => comment.Answers)
-                            .FirstOrDefault();
-
-    public async Task<IEnumerable<ArticleCommentQuery>> FindAllEagerLoadingAsync(CancellationToken cancellationToken)
-        => await _sqlContext.Comments.Include(comment => comment.Answers)
-                                     .Include(comment => comment.User)
-                                     .AsNoTracking()
-                                     .ToListAsync(cancellationToken);
-
-    public async Task<IEnumerable<TViewModel>> FindAllEagerLoadingByProjectionAsync<TViewModel>(
+    public Task<List<TViewModel>> FindAllByProjectionAsync<TViewModel>(
         Expression<Func<ArticleCommentQuery, TViewModel>> projection, CancellationToken cancellationToken
-    )
-    {
-        var query = await _sqlContext.Comments.Include(comment => comment.Answers)
-                                              .Include(comment => comment.User)
-                                              .AsNoTracking()
-                                              .Select(projection)
-                                              .ToListAsync(cancellationToken);
-
-        return query;
-    }
+    ) => sqlContext.Comments.AsNoTracking()
+                            .Select(projection)
+                            .ToListAsync(cancellationToken);
 }

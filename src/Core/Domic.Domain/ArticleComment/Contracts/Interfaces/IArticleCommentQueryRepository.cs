@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Domic.Core.Domain.Contracts.Interfaces;
 
 namespace Domic.Domain.ArticleComment.Contracts.Interfaces;
@@ -7,44 +8,19 @@ public interface IArticleCommentQueryRepository : IQueryRepository<Entities.Arti
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="articleId"></param>
+    /// <param name="projection"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public Task<IEnumerable<Entities.ArticleCommentQuery>> FindAllByArticleIdAsync(string articleId, 
-        CancellationToken cancellationToken
-    ) => throw new NotImplementedException();
-    
+    public new Task<List<TViewModel>> FindAllByProjectionAsync<TViewModel>(
+        Expression<Func<Entities.ArticleCommentQuery, TViewModel>> projection, CancellationToken cancellationToken
+    );
+
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="articleId"></param>
+    /// <param name="comments"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public Task<IEnumerable<Entities.ArticleCommentQuery>> FindAllEagerLoadingByArticleIdAsync(string articleId, 
-        CancellationToken cancellationToken
-    ) => throw new NotImplementedException();
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="ownerId"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public Task<IEnumerable<Entities.ArticleCommentQuery>> FindAllByOwnerIdAsync(string ownerId, 
-        CancellationToken cancellationToken
-    ) => throw new NotImplementedException();
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="ownerId"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public Task<IEnumerable<Entities.ArticleCommentQuery>> FindAllEagerLoadingByOwnerIdAsync(string ownerId, 
-        CancellationToken cancellationToken
-    ) => throw new NotImplementedException();
+    public Task ChangeRangeAsync(IEnumerable<Entities.ArticleCommentQuery> comments, CancellationToken cancellationToken);
 }

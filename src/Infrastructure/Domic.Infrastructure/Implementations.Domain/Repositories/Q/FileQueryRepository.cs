@@ -1,30 +1,41 @@
 ﻿using Domic.Domain.File.Contracts.Interfaces;
 using Domic.Domain.File.Entities;
 using Domic.Persistence.Contexts.Q;
+using Microsoft.EntityFrameworkCore;
 
 namespace Domic.Infrastructure.Implementations.Domain.Repositories.Q;
 
 //Config
-public partial class FileQueryRepository : IFileQueryRepository
-{
-    private readonly SQLContext _sqlContext;
-
-    public FileQueryRepository(SQLContext sqlContext) => _sqlContext = sqlContext;
-}
+public partial class FileQueryRepository(SQLContext sqlContext) : IFileQueryRepository;
 
 //Transaction
 public partial class FileQueryRepository
 {
-    public void Add(FileQuery entity) => _sqlContext.Files.Add(entity);
+    public void Add(FileQuery entity) => sqlContext.Files.Add(entity);
 
-    public void RemoveRange(IEnumerable<FileQuery> entities) => _sqlContext.Files.RemoveRange(entities);
+    public Task AddAsync(FileQuery entity, CancellationToken cancellationToken)
+    {
+        sqlContext.Files.Add(entity);
+
+        return Task.CompletedTask;
+    }
+
+    public Task RemoveRangeAsync(IEnumerable<FileQuery> entities, CancellationToken cancellationToken)
+    {
+        sqlContext.Files.RemoveRange(entities);
+
+        return Task.CompletedTask;
+    }
 }
 
 //Query
 public partial class FileQueryRepository
 {
-    public FileQuery FindById(object id) => _sqlContext.Files.FirstOrDefault(file => file.Id.Equals(id));
+    public Task<FileQuery> FindByIdAsync(object id, CancellationToken cancellationToken)
+        => sqlContext.Files.AsNoTracking().FirstOrDefaultAsync(file => file.Id == id as string, cancellationToken);
 
-    public List<FileQuery> FindAllByArticleId(string articleId)
-        => _sqlContext.Files.Where(file => file.ArticleId.Equals(articleId)).ToList();
+    public Task<List<FileQuery>> FindAllByArticleIdAsync(string articleId, CancellationToken cancellationToken)
+        => sqlContext.Files.AsNoTracking()
+                           .Where(file => file.ArticleId == articleId)
+                           .ToListAsync(cancellationToken);
 }

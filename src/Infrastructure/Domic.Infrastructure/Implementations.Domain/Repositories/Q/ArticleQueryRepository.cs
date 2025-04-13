@@ -1,42 +1,54 @@
 ﻿using System.Linq.Expressions;
 using Domic.Domain.Article.Contracts.Interfaces;
 using Domic.Domain.Article.Entities;
-using Domic.Domain.Article.Events;
 using Domic.Persistence.Contexts.Q;
 using Microsoft.EntityFrameworkCore;
 
 namespace Domic.Infrastructure.Implementations.Domain.Repositories.Q;
 
 //Config
-public partial class ArticleQueryRepository : IArticleQueryRepository
-{
-    private readonly SQLContext _sqlContext;
-
-    public ArticleQueryRepository(SQLContext sqlContext) => _sqlContext = sqlContext;
-}
+public partial class ArticleQueryRepository(SQLContext sqlContext) : IArticleQueryRepository;
 
 //Transaction
 public partial class ArticleQueryRepository
 {
-    public void Add(ArticleQuery entity) => _sqlContext.Articles.Add(entity);
+    public Task AddAsync(ArticleQuery entity, CancellationToken cancellationToken)
+    {
+        sqlContext.Articles.Add(entity);
 
-    public void Change(ArticleQuery entity) => _sqlContext.Articles.Update(entity);
+        return Task.CompletedTask;
+    }
+
+    public Task ChangeAsync(ArticleQuery entity, CancellationToken cancellationToken)
+    {
+        sqlContext.Articles.Update(entity);
+
+        return Task.CompletedTask;
+    }
+
+    public Task ChangeRangeAsync(IEnumerable<ArticleQuery> entities, CancellationToken cancellationToken)
+    {
+        sqlContext.Articles.UpdateRange(entities);
+
+        return Task.CompletedTask;
+    }
 }
 
 //Query
 public partial class ArticleQueryRepository
 {
-    public ArticleQuery FindById(object id) => _sqlContext.Articles.FirstOrDefault(article => article.Id.Equals(id));
+    public Task<ArticleQuery> FindByIdAsync(object id, CancellationToken cancellationToken)
+        => sqlContext.Articles.AsNoTracking().FirstOrDefaultAsync(article => article.Id == id as string, cancellationToken);
 
-    public ArticleQuery FindByIdEagerLoading(object id) =>
-        _sqlContext.Articles.Where(article => article.Id.Equals(id))
-                            .Include(article => article.Files)
-                            .Include(article => article.Comments)
-                            .ThenInclude(comment => comment.Answers)
-                            .FirstOrDefault();
+    public Task<ArticleQuery> FindByIdEagerLoadingAsync(object id, CancellationToken cancellationToken)
+        => sqlContext.Articles.Where(article => article.Id == id as string)
+                              .Include(article => article.Files)
+                              .Include(article => article.Comments)
+                              .ThenInclude(comment => comment.Answers)
+                              .FirstOrDefaultAsync(cancellationToken);
 
     public async Task<IEnumerable<ArticleQuery>> FindAllEagerLoadingAsync(CancellationToken cancellationToken)
-        => await _sqlContext.Articles.Include(article => article.Files)
+        => await sqlContext.Articles.Include(article => article.Files)
                                      .Include(article => article.User)
                                      .Include(article => article.Category)
                                      .AsNoTracking().ToListAsync(cancellationToken);
@@ -45,22 +57,23 @@ public partial class ArticleQueryRepository
         Expression<Func<ArticleQuery, TViewModel>> projection, CancellationToken cancellationToken
     )
     {
-        var query = await _sqlContext.Articles.Include(article => article.Files)
-                                              .Include(article => article.User)
-                                              .Include(article => article.Category)
-                                              .Include(article => article.Comments)
-                                              .ThenInclude(comment => comment.Answers)
-                                              .AsNoTracking()
-                                              .Select(projection)
-                                              .ToListAsync(cancellationToken);
+        var query = await sqlContext.Articles.Include(article => article.Files)
+                                             .Include(article => article.User)
+                                             .Include(article => article.Category)
+                                             .Include(article => article.Comments)
+                                             .ThenInclude(comment => comment.Answers)
+                                             .AsNoTracking()
+                                             .Select(projection)
+                                             .ToListAsync(cancellationToken);
 
         return query;
     }
 
-    public List<ArticleQuery> FindAllEagerLoadingByCategoryId(string categoryId)
-        => _sqlContext.Articles.Where(article => article.CategoryId.Equals(categoryId))
-                               .Include(article => article.Files)
-                               .Include(article => article.Comments)
-                               .ThenInclude(comment => comment.Answers)
-                               .ToList();
+    public Task<List<ArticleQuery>> FindAllEagerLoadingByCategoryIdAsync(string categoryId, CancellationToken cancellationToken)
+        => sqlContext.Articles.Where(article => article.CategoryId == categoryId)
+                              .Include(article => article.Files)
+                              .Include(article => article.Comments)
+                              .ThenInclude(comment => comment.Answers)
+                              .AsNoTracking()
+                              .ToListAsync(cancellationToken);
 }

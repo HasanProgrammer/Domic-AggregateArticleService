@@ -7,21 +7,18 @@ using Domic.Domain.ArticleCommentAnswer.Events;
 
 namespace Domic.UseCase.ArticleCommentAnswerUseCase.Events;
 
-public class CreateArticleCommentAnswerConsumerEventBusHandler : IConsumerEventBusHandler<ArticleCommentAnswerCreated>
+public class CreateArticleCommentAnswerConsumerEventBusHandler(
+    IArticleCommentAnswerQueryRepository articleCommentAnswerQueryRepository
+) : IConsumerEventBusHandler<ArticleCommentAnswerCreated>
 {
-    private readonly IArticleCommentAnswerQueryRepository _articleCommentAnswerQueryRepository;
-
-    public CreateArticleCommentAnswerConsumerEventBusHandler(
-        IArticleCommentAnswerQueryRepository articleCommentAnswerQueryRepository
-    ) => _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
-
-    public void BeforeHandle(ArticleCommentAnswerCreated @event){}
+    public Task BeforeHandleAsync(ArticleCommentAnswerCreated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticleCommentAnswers}|{Cache.AggregateArticles}")]
-    public void Handle(ArticleCommentAnswerCreated @event)
+    public async Task HandleAsync(ArticleCommentAnswerCreated @event, CancellationToken cancellationToken)
     {
-        var targetAnswer = _articleCommentAnswerQueryRepository.FindById(@event.Id);
+        var targetAnswer = await articleCommentAnswerQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 
         if (targetAnswer is null)
         {
@@ -35,9 +32,10 @@ public class CreateArticleCommentAnswerConsumerEventBusHandler : IConsumerEventB
                 CreatedAt_PersianDate = @event.CreatedAt_PersianDate
             };
 
-            _articleCommentAnswerQueryRepository.Add(newAnswer);
+            await articleCommentAnswerQueryRepository.AddAsync(newAnswer, cancellationToken);
         }
     }
 
-    public void AfterHandle(ArticleCommentAnswerCreated @event){}
+    public Task AfterHandleAsync(ArticleCommentAnswerCreated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

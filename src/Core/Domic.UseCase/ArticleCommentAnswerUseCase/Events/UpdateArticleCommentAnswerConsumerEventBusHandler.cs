@@ -6,21 +6,18 @@ using Domic.Domain.ArticleCommentAnswer.Events;
 
 namespace Domic.UseCase.ArticleCommentAnswerUseCase.Events;
 
-public class UpdateArticleCommentAnswerConsumerEventBusHandler : IConsumerEventBusHandler<ArticleCommentAnswerUpdated>
+public class UpdateArticleCommentAnswerConsumerEventBusHandler(
+    IArticleCommentAnswerQueryRepository articleCommentAnswerQueryRepository
+) : IConsumerEventBusHandler<ArticleCommentAnswerUpdated>
 {
-    private readonly IArticleCommentAnswerQueryRepository _articleCommentAnswerQueryRepository;
-
-    public UpdateArticleCommentAnswerConsumerEventBusHandler(
-        IArticleCommentAnswerQueryRepository articleCommentAnswerQueryRepository
-    ) => _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
-
-    public void BeforeHandle(ArticleCommentAnswerUpdated @event){}
+    public Task BeforeHandleAsync(ArticleCommentAnswerUpdated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticleCommentAnswers}|{Cache.AggregateArticles}")]
-    public void Handle(ArticleCommentAnswerUpdated @event)
+    public async Task HandleAsync(ArticleCommentAnswerUpdated @event, CancellationToken cancellationToken)
     {
-        var targetAnswer = _articleCommentAnswerQueryRepository.FindById(@event.Id);
+        var targetAnswer = await articleCommentAnswerQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 
         if (targetAnswer is not null)
         {
@@ -30,9 +27,10 @@ public class UpdateArticleCommentAnswerConsumerEventBusHandler : IConsumerEventB
             targetAnswer.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             targetAnswer.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             
-            _articleCommentAnswerQueryRepository.Change(targetAnswer);
+            await articleCommentAnswerQueryRepository.ChangeAsync(targetAnswer, cancellationToken);
         }
     }
 
-    public void AfterHandle(ArticleCommentAnswerUpdated @event){}
+    public Task AfterHandleAsync(ArticleCommentAnswerUpdated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

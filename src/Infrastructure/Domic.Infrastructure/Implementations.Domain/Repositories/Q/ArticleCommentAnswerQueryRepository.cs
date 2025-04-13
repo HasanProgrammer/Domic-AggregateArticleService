@@ -1,5 +1,4 @@
 ﻿using System.Linq.Expressions;
-using Domic.Domain.ArticleComment.Entities;
 using Domic.Domain.ArticleCommentAnswer.Contracts.Interfaces;
 using Domic.Domain.ArticleCommentAnswer.Entities;
 using Domic.Persistence.Contexts.Q;
@@ -8,45 +7,40 @@ using Microsoft.EntityFrameworkCore;
 namespace Domic.Infrastructure.Implementations.Domain.Repositories.Q;
 
 //Config
-public partial class ArticleCommentAnswerQueryRepository : IArticleCommentAnswerQueryRepository
-{
-    private readonly SQLContext _sqlContext;
-
-    public ArticleCommentAnswerQueryRepository(SQLContext sqlContext) => _sqlContext = sqlContext;
-}
+public partial class ArticleCommentAnswerQueryRepository(SQLContext sqlContext) : IArticleCommentAnswerQueryRepository;
 
 //Transaction
 public partial class ArticleCommentAnswerQueryRepository
 {
-    public void Add(ArticleCommentAnswerQuery entity) => _sqlContext.Answers.Add(entity);
+    public Task AddAsync(ArticleCommentAnswerQuery entity, CancellationToken cancellationToken)
+    {
+        sqlContext.Answers.Add(entity);
 
-    public void Change(ArticleCommentAnswerQuery entity) => _sqlContext.Answers.Update(entity);
+        return Task.CompletedTask;
+    }
+
+    public Task ChangeAsync(ArticleCommentAnswerQuery entity, CancellationToken cancellationToken)
+    {
+        sqlContext.Answers.Update(entity);
+
+        return Task.CompletedTask;
+    }
+
+    public Task ChangeRangeAsync(IEnumerable<ArticleCommentAnswerQuery> entities, CancellationToken cancellationToken)
+    {
+        sqlContext.Answers.UpdateRange(entities);
+
+        return Task.CompletedTask;
+    }
 }
 
 //Query
 public partial class ArticleCommentAnswerQueryRepository
 {
-    public ArticleCommentAnswerQuery FindById(object id)
-        => _sqlContext.Answers.FirstOrDefault(answer => answer.Id.Equals(id));
+    public Task<ArticleCommentAnswerQuery> FindByIdAsync(object id, CancellationToken cancellationToken)
+        => sqlContext.Answers.AsNoTracking().FirstOrDefaultAsync(answer => answer.Id == id as string, cancellationToken);
 
-    public ArticleCommentAnswerQuery FindByIdEagerLoading(object id) =>
-        _sqlContext.Answers.Where(answer => answer.Id.Equals(id)).Include(answer => answer.User).FirstOrDefault();
-
-    public async Task<IEnumerable<ArticleCommentAnswerQuery>> FindAllEagerLoadingAsync(
-        CancellationToken cancellationToken
-    )
-    => await _sqlContext.Answers.Include(comment => comment.User).AsNoTracking().ToListAsync(cancellationToken);
-
-    public async Task<IEnumerable<TViewModel>> FindAllEagerLoadingByProjectionAsync<TViewModel>(
-        Expression<Func<ArticleCommentQuery, TViewModel>> projection, CancellationToken cancellationToken
-    )
-    {
-        var query = await _sqlContext.Comments.Include(comment => comment.Answers)
-                                              .Include(comment => comment.User)
-                                              .AsNoTracking()
-                                              .Select(projection)
-                                              .ToListAsync(cancellationToken);
-
-        return query;
-    }
+    public Task<List<TViewModel>> FindAllByProjectionAsync<TViewModel>(
+        Expression<Func<ArticleCommentAnswerQuery, TViewModel>> projection, CancellationToken cancellationToken
+    ) => sqlContext.Answers.AsNoTracking().Select(projection).ToListAsync(cancellationToken);
 }

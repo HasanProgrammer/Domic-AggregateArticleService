@@ -8,37 +8,26 @@ using Domic.Domain.ArticleCommentAnswer.Contracts.Interfaces;
 using Domic.Domain.Category.Contracts.Interfaces;
 using Domic.Domain.Category.Events;
 using Domic.Domain.File.Contracts.Interfaces;
+using Domic.Domain.File.Entities;
 
 namespace Domic.UseCase.CategoryUseCase.Events;
 
-public class DeleteCategoryConsumerEventBusHandler : IConsumerEventBusHandler<CategoryDeleted>
+public class DeleteCategoryConsumerEventBusHandler(
+    ICategoryQueryRepository categoryQueryRepository,
+    IArticleQueryRepository articleQueryRepository,
+    IFileQueryRepository fileQueryRepository,
+    IArticleCommentQueryRepository articleCommentQueryRepository,
+    IArticleCommentAnswerQueryRepository articleCommentAnswerQueryRepository
+) : IConsumerEventBusHandler<CategoryDeleted>
 {
-    private readonly IArticleQueryRepository              _articleQueryRepository;
-    private readonly ICategoryQueryRepository             _categoryQueryRepository;
-    private readonly IFileQueryRepository                 _fileQueryRepository;
-    private readonly IArticleCommentQueryRepository       _articleCommentQueryRepository;
-    private readonly IArticleCommentAnswerQueryRepository _articleCommentAnswerQueryRepository;
-
-    public DeleteCategoryConsumerEventBusHandler(ICategoryQueryRepository categoryQueryRepository,
-        IArticleQueryRepository articleQueryRepository, IFileQueryRepository fileQueryRepository,
-        IArticleCommentQueryRepository articleCommentQueryRepository, 
-        IArticleCommentAnswerQueryRepository articleCommentAnswerQueryRepository
-    )
-    {
-        _articleQueryRepository              = articleQueryRepository;
-        _categoryQueryRepository             = categoryQueryRepository;
-        _fileQueryRepository                 = fileQueryRepository;
-        _articleCommentQueryRepository       = articleCommentQueryRepository;
-        _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
-    }
-
-    public void BeforeHandle(CategoryDeleted @event){}
+    public Task BeforeHandleAsync(CategoryDeleted @event, CancellationToken cancellationToken) 
+        => Task.CompletedTask;
 
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticles}|{Cache.AggregateArticles}")]
-    public void Handle(CategoryDeleted @event)
+    public async Task HandleAsync(CategoryDeleted @event, CancellationToken cancellationToken)
     {
-        var targetCategory = _categoryQueryRepository.FindById(@event.Id);
+        var targetCategory = await categoryQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 
         if (targetCategory is not null)
         {
@@ -48,23 +37,22 @@ public class DeleteCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
             targetCategory.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             targetCategory.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
 
-            _categoryQueryRepository.Change(targetCategory);
+            await categoryQueryRepository.ChangeAsync(targetCategory, cancellationToken);
 
             var articles =
-                _articleQueryRepository.FindAllEagerLoadingByCategoryId(@event.Id);
+                await articleQueryRepository.FindAllEagerLoadingByCategoryIdAsync(@event.Id, cancellationToken);
+
+            var files = new List<FileQuery>();
 
             foreach (var article in articles)
             {
-                foreach (var file in article.Files)
-                    _fileQueryRepository.Remove(file);
+                files.AddRange(article.Files);
                 
                 article.IsDeleted             = IsDeleted.Delete;
                 article.UpdatedBy             = @event.UpdatedBy;
                 article.UpdatedRole           = @event.UpdatedRole;
                 article.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                 article.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
-                    
-                _articleQueryRepository.Change(article);
 
                 foreach (var comment in article.Comments)
                 {
@@ -73,8 +61,6 @@ public class DeleteCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
                     comment.UpdatedRole           = @event.UpdatedRole;
                     comment.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                     comment.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
-                    
-                    _articleCommentQueryRepository.Change(comment);
 
                     foreach (var answer in comment.Answers)
                     {
@@ -83,13 +69,19 @@ public class DeleteCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
                         answer.UpdatedRole           = @event.UpdatedRole;
                         answer.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                         answer.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
-                    
-                        _articleCommentAnswerQueryRepository.Change(answer);
                     }
                 }
             }
+
+            if(files.Count > 0)
+                await fileQueryRepository.RemoveRangeAsync(files, cancellationToken);
+
+            await articleQueryRepository.ChangeRangeAsync(articles, cancellationToken);
+            await articleCommentQueryRepository.ChangeRangeAsync(articles.SelectMany(article => article.Comments), cancellationToken);
+            await articleCommentAnswerQueryRepository.ChangeRangeAsync(articles.SelectMany(article => article.Comments).SelectMany(comment => comment.Answers), cancellationToken);
         }
     }
-
-    public void AfterHandle(CategoryDeleted @event){}
+    
+    public Task AfterHandleAsync(CategoryDeleted @event, CancellationToken cancellationToken) 
+        => Task.CompletedTask;
 }

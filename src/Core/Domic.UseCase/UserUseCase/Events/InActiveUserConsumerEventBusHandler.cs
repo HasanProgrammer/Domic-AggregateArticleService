@@ -7,19 +7,15 @@ using Domic.Domain.User.Events;
 
 namespace Domic.UseCase.UserUseCase.Events;
 
-public class InActiveUserConsumerEventBusHandler : IConsumerEventBusHandler<UserInActived>
+public class InActiveUserConsumerEventBusHandler(IUserQueryRepository userQueryRepository) : IConsumerEventBusHandler<UserInActived>
 {
-    private readonly IUserQueryRepository _userQueryRepository;
-
-    public InActiveUserConsumerEventBusHandler(IUserQueryRepository userQueryRepository) 
-        => _userQueryRepository = userQueryRepository;
-
-    public void BeforeHandle(UserInActived @event){}
+    public Task BeforeHandleAsync(UserInActived @event, CancellationToken cancellationToken) 
+        => Task.CompletedTask;
 
     [TransactionConfig(Type = TransactionType.Query)]
-    public void Handle(UserInActived @event)
+    public async Task HandleAsync(UserInActived @event, CancellationToken cancellationToken)
     {
-        var targetUser = _userQueryRepository.FindById(@event.Id);
+        var targetUser = await userQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 
         if (targetUser is not null)
         {
@@ -29,9 +25,10 @@ public class InActiveUserConsumerEventBusHandler : IConsumerEventBusHandler<User
             targetUser.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             targetUser.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             
-            _userQueryRepository.Change(targetUser);
+            await userQueryRepository.ChangeAsync(targetUser, cancellationToken);
         }
     }
 
-    public void AfternHandle(UserInActived @event){}
+    public Task AfterHandleAsync(UserInActived @event, CancellationToken cancellationToken) 
+        => Task.CompletedTask;
 }

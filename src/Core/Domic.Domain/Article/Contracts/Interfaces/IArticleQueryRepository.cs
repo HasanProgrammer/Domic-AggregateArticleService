@@ -11,5 +11,13 @@ public interface IArticleQueryRepository : IQueryRepository<ArticleQuery, string
     /// <param name="categoryId"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public List<ArticleQuery> FindAllEagerLoadingByCategoryId(string categoryId) => throw new NotImplementedException();
+    public Task<List<ArticleQuery>> FindAllEagerLoadingByCategoryIdAsync(string categoryId, CancellationToken cancellationToken) => throw new NotImplementedException();
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="articles"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public Task ChangeRangeAsync(IEnumerable<ArticleQuery> articles, CancellationToken cancellationToken);
 }
