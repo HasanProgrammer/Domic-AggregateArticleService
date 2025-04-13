@@ -8,59 +8,55 @@ using Domic.Domain.File.Entities;
 
 namespace Domic.UseCase.CategoryUseCase.Events;
 
-public class UpdateArticleConsumerEventBusHandler : IConsumerEventBusHandler<ArticleUpdated>
+public class UpdateArticleConsumerEventBusHandler(
+    IArticleQueryRepository articleQueryRepository,
+    IFileQueryRepository fileQueryRepository
+) : IConsumerEventBusHandler<ArticleUpdated>
 {
-    private readonly IFileQueryRepository    _fileQueryRepository;
-    private readonly IArticleQueryRepository _articleQueryRepository;
-
-    public UpdateArticleConsumerEventBusHandler(IArticleQueryRepository articleQueryRepository,
-        IFileQueryRepository fileQueryRepository
-    )
-    {
-        _fileQueryRepository    = fileQueryRepository;
-        _articleQueryRepository = articleQueryRepository;
-    }
-
-    public void BeforeHandle(ArticleUpdated @event){}
+    public Task BeforeHandleAsync(ArticleUpdated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = Cache.AggregateArticles)]
-    public void Handle(ArticleUpdated @event)
+    public async Task HandleAsync(ArticleUpdated @event, CancellationToken cancellationToken)
     {
-        var targetArticle = _articleQueryRepository.FindByIdEagerLoading(@event.Id);
+        var targetArticle = await articleQueryRepository.FindByIdEagerLoadingAsync(@event.Id, cancellationToken);
 
         targetArticle.CategoryId            = @event.CategoryId;
-        targetArticle.UpdatedBy             = @event.UpdatedBy;
-        targetArticle.UpdatedRole           = @event.UpdatedRole;
         targetArticle.Title                 = @event.Title;
         targetArticle.Summary               = @event.Summary;
         targetArticle.Body                  = @event.Body;
+        targetArticle.UpdatedBy             = @event.UpdatedBy;
+        targetArticle.UpdatedRole           = @event.UpdatedRole;
         targetArticle.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
         targetArticle.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
 
         if (@event.FileId is not null)
         {
-            _fileQueryRepository.RemoveRange(targetArticle.Files);
+            #region HardDelete Files
+
+            await fileQueryRepository.RemoveRangeAsync(targetArticle.Files, cancellationToken);
+
+            #endregion
             
             var newFile = new FileQuery {
                 Id                    = @event.FileId                ,
                 ArticleId             = @event.Id                    ,
-                UpdatedBy             = @event.UpdatedBy             ,
-                UpdatedRole           = @event.UpdatedRole           ,
                 Path                  = @event.FilePath              ,
                 Name                  = @event.FileName              ,
                 Extension             = @event.FileExtension         ,
+                CreatedBy             = @event.UpdatedBy             ,
+                CreatedRole           = @event.UpdatedRole           ,
                 CreatedAt_EnglishDate = @event.UpdatedAt_EnglishDate ,
-                CreatedAt_PersianDate = @event.UpdatedAt_PersianDate ,
-                UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate ,
-                UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate
+                CreatedAt_PersianDate = @event.UpdatedAt_PersianDate
             };
                 
-            _fileQueryRepository.Add(newFile);
+            await fileQueryRepository.AddAsync(newFile, cancellationToken);
         }
 
-        _articleQueryRepository.Change(targetArticle);
+        await articleQueryRepository.ChangeAsync(targetArticle, cancellationToken);
     }
 
-    public void AfterHandle(ArticleUpdated @event){}
+    public Task AfterHandleAsync(ArticleUpdated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

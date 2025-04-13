@@ -19,6 +19,9 @@ public static class RpcRequestExtension
         if (typeof(T) == typeof(ReadAllPaginatedQuery))
         {
             Request = new ReadAllPaginatedQuery {
+            //  UserId       = request.UserId.Value,
+            //  IsActive     = request.IsActive.Value,
+            //  Search       = request.Search,
                 PageNumber   = request.PageNumber.Value,
                 CountPerPage = request.CountPerPage.Value
             };

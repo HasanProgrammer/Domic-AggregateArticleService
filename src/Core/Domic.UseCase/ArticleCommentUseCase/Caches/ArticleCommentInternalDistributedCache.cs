@@ -1,4 +1,4 @@
-﻿using Domic.Core.Common.ClassConsts;
+using Domic.Core.Common.ClassConsts;
 using Domic.Core.Domain.Enumerations;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
@@ -7,7 +7,7 @@ using Domic.UseCase.ArticleCommentUseCase.DTOs;
 
 namespace Domic.UseCase.ArticleCommentUseCase.Caches;
 
-public class ArticleCommentsEagerLoadingMemoryCache(
+public class ArticleCommentInternalDistributedCache(
     IArticleCommentQueryRepository articleCommentQueryRepository
 ) : IInternalDistributedCacheHandler<List<ArticleCommentDto>>
 {

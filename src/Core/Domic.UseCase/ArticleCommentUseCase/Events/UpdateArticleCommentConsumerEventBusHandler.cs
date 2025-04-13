@@ -6,20 +6,16 @@ using Domic.Domain.ArticleComment.Events;
 
 namespace Domic.UseCase.ArticleCommentUseCase.Events;
 
-public class UpdateArticleCommentConsumerEventBusHandler : IConsumerEventBusHandler<ArticleCommentUpdated>
+public class UpdateArticleCommentConsumerEventBusHandler(IArticleCommentQueryRepository articleCommentQueryRepository) : IConsumerEventBusHandler<ArticleCommentUpdated>
 {
-    private readonly IArticleCommentQueryRepository _articleCommentQueryRepository;
-
-    public UpdateArticleCommentConsumerEventBusHandler(IArticleCommentQueryRepository articleCommentQueryRepository) 
-        => _articleCommentQueryRepository = articleCommentQueryRepository;
-
-    public void BeforeHandle(ArticleCommentUpdated @event){}
+    public Task BeforeHandleAsync(ArticleCommentUpdated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticleComments}|{Cache.AggregateArticles}")]
-    public void Handle(ArticleCommentUpdated @event)
+    public async Task HandleAsync(ArticleCommentUpdated @event, CancellationToken cancellationToken)
     {
-        var targetComment = _articleCommentQueryRepository.FindById(@event.Id);
+        var targetComment = await articleCommentQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 
         if (targetComment is not null)
         {
@@ -29,9 +25,10 @@ public class UpdateArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
             targetComment.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             targetComment.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             
-            _articleCommentQueryRepository.Change(targetComment);
+            await articleCommentQueryRepository.ChangeAsync(targetComment, cancellationToken);
         }
     }
 
-    public void AfterHandle(ArticleCommentUpdated @event){}
+    public Task AfterHandleAsync(ArticleCommentUpdated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

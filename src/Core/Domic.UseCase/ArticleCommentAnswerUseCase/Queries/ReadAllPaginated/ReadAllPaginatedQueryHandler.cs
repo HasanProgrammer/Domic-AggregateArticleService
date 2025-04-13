@@ -16,7 +16,7 @@ public class ReadAllPaginatedQueryHandler(
     {
         var articles = await distributedCacheMediator.GetAsync<List<ArticleCommentAnswerDto>>(cancellationToken);
 
-        articles = articles.Where(article => 
+        articles = articles.Where(article => article.IsActive == query.IsActive &&
             ( string.IsNullOrEmpty(query.UserId) || article.CreatedBy == query.UserId ) &&
             ( string.IsNullOrEmpty(query.SearchText) || article.CreatedByFullName.Contains(query.SearchText) ) &&
             ( string.IsNullOrEmpty(query.SearchText) || article.ArticleTitle.Contains(query.SearchText) )

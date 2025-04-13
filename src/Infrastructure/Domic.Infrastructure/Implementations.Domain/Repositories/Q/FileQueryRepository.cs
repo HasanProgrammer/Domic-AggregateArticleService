@@ -11,8 +11,6 @@ public partial class FileQueryRepository(SQLContext sqlContext) : IFileQueryRepo
 //Transaction
 public partial class FileQueryRepository
 {
-    public void Add(FileQuery entity) => sqlContext.Files.Add(entity);
-
     public Task AddAsync(FileQuery entity, CancellationToken cancellationToken)
     {
         sqlContext.Files.Add(entity);

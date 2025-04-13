@@ -70,10 +70,14 @@ public partial class ArticleQueryRepository
     }
 
     public Task<List<ArticleQuery>> FindAllEagerLoadingByCategoryIdAsync(string categoryId, CancellationToken cancellationToken)
-        => sqlContext.Articles.Where(article => article.CategoryId == categoryId)
+        => sqlContext.Articles.AsNoTracking()
+                              .Where(article => article.CategoryId == categoryId)
                               .Include(article => article.Files)
                               .Include(article => article.Comments)
                               .ThenInclude(comment => comment.Answers)
-                              .AsNoTracking()
                               .ToListAsync(cancellationToken);
+
+    public Task<List<TViewModel>> FindAllByProjectionAsync<TViewModel>(
+        Expression<Func<ArticleQuery, TViewModel>> projection, CancellationToken cancellationToken
+    ) => sqlContext.Articles.AsNoTracking().Select(projection).ToListAsync(cancellationToken);
 }

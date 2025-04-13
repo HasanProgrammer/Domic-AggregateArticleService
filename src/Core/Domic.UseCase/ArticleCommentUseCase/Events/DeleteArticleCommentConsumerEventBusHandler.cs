@@ -8,26 +8,19 @@ using Domic.Domain.ArticleCommentAnswer.Contracts.Interfaces;
 
 namespace Domic.UseCase.ArticleCommentUseCase.Events;
 
-public class DeleteArticleCommentConsumerEventBusHandler : IConsumerEventBusHandler<ArticleCommentDeleted>
+public class DeleteArticleCommentConsumerEventBusHandler(
+    IArticleCommentQueryRepository articleCommentQueryRepository,
+    IArticleCommentAnswerQueryRepository articleCommentAnswerQueryRepository
+) : IConsumerEventBusHandler<ArticleCommentDeleted>
 {
-    private readonly IArticleCommentQueryRepository       _articleCommentQueryRepository;
-    private readonly IArticleCommentAnswerQueryRepository _articleCommentAnswerQueryRepository;
-
-    public DeleteArticleCommentConsumerEventBusHandler(IArticleCommentQueryRepository articleCommentQueryRepository,
-        IArticleCommentAnswerQueryRepository articleCommentAnswerQueryRepository
-    )
-    {
-        _articleCommentQueryRepository       = articleCommentQueryRepository;
-        _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
-    }
-
-    public void BeforeHandle(ArticleCommentDeleted @event){}
+    public Task BeforeHandleAsync(ArticleCommentDeleted @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticleComments}|{Cache.AggregateArticles}")]
-    public void Handle(ArticleCommentDeleted @event)
+    public async Task HandleAsync(ArticleCommentDeleted @event, CancellationToken cancellationToken)
     {
-        var targetComment = _articleCommentQueryRepository.FindByIdEagerLoading(@event.Id);
+        var targetComment = await articleCommentQueryRepository.FindByIdEagerLoadingAsync(@event.Id, cancellationToken);
 
         if (targetComment is not null)
         {
@@ -37,8 +30,6 @@ public class DeleteArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
             targetComment.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             targetComment.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             
-            _articleCommentQueryRepository.Change(targetComment);
-
             foreach (var answer in targetComment.Answers)
             {
                 answer.IsDeleted             = IsDeleted.Delete;
@@ -46,11 +37,13 @@ public class DeleteArticleCommentConsumerEventBusHandler : IConsumerEventBusHand
                 answer.UpdatedRole           = @event.UpdatedRole;
                 answer.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
                 answer.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
-                
-                _articleCommentAnswerQueryRepository.Change(answer);
             }
         }
+
+        await articleCommentQueryRepository.ChangeAsync(targetComment, cancellationToken);
+        await articleCommentAnswerQueryRepository.ChangeRangeAsync(targetComment.Answers, cancellationToken);
     }
 
-    public void AfterHandle(ArticleCommentDeleted @event){}
+    public Task AfterHandleAsync(ArticleCommentDeleted @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

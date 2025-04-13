@@ -9,38 +9,30 @@ using Domic.Domain.File.Entities;
 
 namespace Domic.UseCase.CategoryUseCase.Events;
 
-public class CreateArticleConsumerEventBusHandler : IConsumerEventBusHandler<ArticleCreated>
+public class CreateArticleConsumerEventBusHandler(
+    IArticleQueryRepository articleQueryRepository,
+    IFileQueryRepository fileQueryRepository
+) : IConsumerEventBusHandler<ArticleCreated>
 {
-    private readonly IFileQueryRepository    _fileQueryRepository;
-    private readonly IArticleQueryRepository _articleQueryRepository;
-
-    public CreateArticleConsumerEventBusHandler(IArticleQueryRepository articleQueryRepository,
-        IFileQueryRepository fileQueryRepository
-    )
-    {
-        _fileQueryRepository    = fileQueryRepository;
-        _articleQueryRepository = articleQueryRepository;
-    }
-
-    public void BeforeHandle(ArticleCreated @event)
-    {}
+    public Task BeforeHandleAsync(ArticleCreated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = Cache.AggregateArticles)]
-    public void Handle(ArticleCreated @event)
+    public async Task HandleAsync(ArticleCreated @event, CancellationToken cancellationToken)
     {
-        var targetArticle = _articleQueryRepository.FindById(@event.Id);
+        var targetArticle = await articleQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 
         if (targetArticle is null)
         {
             var newArticle = new ArticleQuery {
                 Id                    = @event.Id                    ,
                 CategoryId            = @event.CategoryId            ,
-                CreatedRole           = @event.CreatedRole           ,
-                CreatedBy             = @event.CreatedBy             ,
                 Title                 = @event.Title                 ,
                 Summary               = @event.Summary               ,
                 Body                  = @event.Body                  ,
+                CreatedBy             = @event.CreatedBy             ,
+                CreatedRole           = @event.CreatedRole           ,
                 CreatedAt_EnglishDate = @event.CreatedAt_EnglishDate ,
                 CreatedAt_PersianDate = @event.CreatedAt_PersianDate
             };
@@ -48,19 +40,20 @@ public class CreateArticleConsumerEventBusHandler : IConsumerEventBusHandler<Art
             var newFile = new FileQuery {
                 Id                    = @event.FileId                ,
                 ArticleId             = @event.Id                    ,
-                CreatedRole           = @event.CreatedRole           ,
-                CreatedBy             = @event.CreatedBy             ,
                 Path                  = @event.FilePath              ,
                 Name                  = @event.FileName              ,
                 Extension             = @event.FileExtension         ,
+                CreatedBy             = @event.CreatedBy             ,
+                CreatedRole           = @event.CreatedRole           ,
                 CreatedAt_EnglishDate = @event.CreatedAt_EnglishDate ,
                 CreatedAt_PersianDate = @event.CreatedAt_PersianDate
             };
         
-            _articleQueryRepository.Add(newArticle);
-            _fileQueryRepository.Add(newFile);
+            await articleQueryRepository.AddAsync(newArticle, cancellationToken);
+            await fileQueryRepository.AddAsync(newFile, cancellationToken);
         }
     }
 
-    public void AfternHandle(ArticleCreated @event){}
+    public Task AfterHandleAsync(ArticleCreated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

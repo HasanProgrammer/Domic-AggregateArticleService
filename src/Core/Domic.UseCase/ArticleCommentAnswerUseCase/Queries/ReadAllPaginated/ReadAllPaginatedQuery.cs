@@ -9,4 +9,5 @@ public class ReadAllPaginatedQuery : PaginatedQuery, IQuery<PaginatedCollection<
 {
     public string UserId     { get; set; }
     public string SearchText { get; set; }
+    public bool IsActive     { get; set; } = true;
 }

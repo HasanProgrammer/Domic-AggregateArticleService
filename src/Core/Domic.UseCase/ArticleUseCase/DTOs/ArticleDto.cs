@@ -1,9 +1,8 @@
-using Domic.UseCase.ArticleCommentUseCase.DTOs.ViewModels;
-using Domic.Core.UseCase.DTOs.ViewModels;
+using Domic.UseCase.ArticleCommentUseCase.DTOs;
 
-namespace Domic.UseCase.ArticleUseCase.DTOs.ViewModels;
+namespace Domic.UseCase.ArticleUseCase.DTOs;
 
-public class ArticlesViewModel : ViewModel
+public class ArticleDto
 {
     //Article
     
@@ -13,6 +12,7 @@ public class ArticlesViewModel : ViewModel
     public required string Body                 { get; init; }
     public required bool IsDeleted              { get; init; }
     public required bool IsActive               { get; init; }
+    public required string CreatedBy            { get; init; }
     public required string CreatedAt_Persian    { get; init; }
     public required string UpdatedAt_Persian    { get; init; }
     public required DateTime CreatedAt_English  { get; init; }
@@ -33,5 +33,5 @@ public class ArticlesViewModel : ViewModel
     
     //Comments
     
-    public required List<ArticleCommentsViewModel> Comments { get; set; }
+    public required List<ArticleCommentDto> Comments { get; set; }
 }

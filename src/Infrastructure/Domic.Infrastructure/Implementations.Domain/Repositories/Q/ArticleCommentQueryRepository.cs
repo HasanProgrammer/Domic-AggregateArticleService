@@ -40,6 +40,11 @@ public partial class ArticleCommentQueryRepository
     public Task<ArticleCommentQuery> FindByIdAsync(object id, CancellationToken cancellationToken)
         => sqlContext.Comments.AsNoTracking().FirstOrDefaultAsync(comment => comment.Id == id as string, cancellationToken);
 
+    public Task<ArticleCommentQuery> FindByIdEagerLoadingAsync(object id, CancellationToken cancellationToken)
+        => sqlContext.Comments.Where(comment => comment.Id == id as string)
+                              .Include(comment => comment.Answers)
+                              .FirstOrDefaultAsync(cancellationToken);
+
     public Task<List<TViewModel>> FindAllByProjectionAsync<TViewModel>(
         Expression<Func<ArticleCommentQuery, TViewModel>> projection, CancellationToken cancellationToken
     ) => sqlContext.Comments.AsNoTracking()

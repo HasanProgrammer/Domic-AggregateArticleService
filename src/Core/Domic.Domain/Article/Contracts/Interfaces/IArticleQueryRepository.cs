@@ -1,5 +1,6 @@
 using Domic.Domain.Article.Entities;
 using Domic.Core.Domain.Contracts.Interfaces;
+using System.Linq.Expressions;
 
 namespace Domic.Domain.Article.Contracts.Interfaces;
 
@@ -12,6 +13,15 @@ public interface IArticleQueryRepository : IQueryRepository<ArticleQuery, string
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
     public Task<List<ArticleQuery>> FindAllEagerLoadingByCategoryIdAsync(string categoryId, CancellationToken cancellationToken) => throw new NotImplementedException();
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <param name="projection"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    new Task<List<TViewModel>> FindAllByProjectionAsync<TViewModel>(Expression<Func<ArticleQuery, TViewModel>> projection, CancellationToken cancellationToken);
 
     /// <summary>
     /// 

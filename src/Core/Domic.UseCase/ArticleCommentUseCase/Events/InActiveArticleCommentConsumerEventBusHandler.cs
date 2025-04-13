@@ -8,26 +8,17 @@ using Domic.Domain.ArticleCommentAnswer.Contracts.Interfaces;
 
 namespace Domic.UseCase.ArticleCommentUseCase.Events;
 
-public class InActiveArticleCommentConsumerEventBusHandler : IConsumerEventBusHandler<ArticleCommentInActived>
+public class InActiveArticleCommentConsumerEventBusHandler(IArticleCommentQueryRepository articleCommentQueryRepository,
+    IArticleCommentAnswerQueryRepository articleCommentAnswerQueryRepository) : IConsumerEventBusHandler<ArticleCommentInActived>
 {
-    private readonly IArticleCommentQueryRepository       _articleCommentQueryRepository;
-    private readonly IArticleCommentAnswerQueryRepository _articleCommentAnswerQueryRepository;
-
-    public InActiveArticleCommentConsumerEventBusHandler(IArticleCommentQueryRepository articleCommentQueryRepository,
-        IArticleCommentAnswerQueryRepository articleCommentAnswerQueryRepository
-    )
-    {
-        _articleCommentQueryRepository       = articleCommentQueryRepository;
-        _articleCommentAnswerQueryRepository = articleCommentAnswerQueryRepository;
-    }
-
-    public void BeforeHandle(ArticleCommentInActived @event){}
+    public Task BeforeHandleAsync(ArticleCommentInActived @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticleComments}|{Cache.AggregateArticles}")]
-    public void Handle(ArticleCommentInActived @event)
+    public async Task HandleAsync(ArticleCommentInActived @event, CancellationToken cancellationToken)
     {
-        var targetComment = _articleCommentQueryRepository.FindByIdEagerLoading(@event.Id);
+        var targetComment = await articleCommentQueryRepository.FindByIdEagerLoadingAsync(@event.Id, cancellationToken);
 
         if (targetComment is not null)
         {
@@ -37,20 +28,20 @@ public class InActiveArticleCommentConsumerEventBusHandler : IConsumerEventBusHa
             targetComment.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
             targetComment.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
             
-            _articleCommentQueryRepository.Change(targetComment);
-
             foreach (var answer in targetComment.Answers)
             {
                 answer.IsActive              = IsActive.InActive;
                 answer.UpdatedBy             = @event.UpdatedBy;
                 answer.UpdatedRole           = @event.UpdatedRole;
                 answer.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
-                answer.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
-                
-                _articleCommentAnswerQueryRepository.Change(answer);
+                answer.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;                
             }
         }
+
+        await articleCommentQueryRepository.ChangeAsync(targetComment, cancellationToken);
+        await articleCommentAnswerQueryRepository.ChangeRangeAsync(targetComment.Answers, cancellationToken);
     }
 
-    public void AfterHandle(ArticleCommentInActived @event){}
+    public Task AfterHandleAsync(ArticleCommentInActived @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

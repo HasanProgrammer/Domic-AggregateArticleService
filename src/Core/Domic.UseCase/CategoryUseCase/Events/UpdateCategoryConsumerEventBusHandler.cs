@@ -6,20 +6,18 @@ using Domic.Domain.Category.Events;
 
 namespace Domic.UseCase.CategoryUseCase.Events;
 
-public class UpdateCategoryConsumerEventBusHandler : IConsumerEventBusHandler<CategoryUpdated>
+public class UpdateCategoryConsumerEventBusHandler(
+    ICategoryQueryRepository categoryQueryRepository
+) : IConsumerEventBusHandler<CategoryUpdated>
 {
-    private readonly ICategoryQueryRepository _categoryQueryRepository;
-
-    public UpdateCategoryConsumerEventBusHandler(ICategoryQueryRepository categoryQueryRepository) 
-        => _categoryQueryRepository = categoryQueryRepository;
-
-    public void BeforeHandle(CategoryUpdated @event){}
+    public Task BeforeHandleAsync(CategoryUpdated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticles}|{Cache.AggregateArticles}")]
-    public void Handle(CategoryUpdated @event)
+    public async Task HandleAsync(CategoryUpdated @event, CancellationToken cancellationToken)
     {
-        var targetCategory = _categoryQueryRepository.FindById(@event.Id);
+        var targetCategory = await categoryQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 
         targetCategory.Name        = @event.Name;
         targetCategory.UpdatedBy   = @event.UpdatedBy;
@@ -27,8 +25,9 @@ public class UpdateCategoryConsumerEventBusHandler : IConsumerEventBusHandler<Ca
         targetCategory.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
         targetCategory.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
 
-        _categoryQueryRepository.Change(targetCategory);
+        await categoryQueryRepository.ChangeAsync(targetCategory, cancellationToken);
     }
 
-    public void AfterHandle(CategoryUpdated @event){}
+    public Task AfterHandleAsync(CategoryUpdated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

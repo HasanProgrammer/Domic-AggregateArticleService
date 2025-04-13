@@ -7,36 +7,33 @@ using Domic.Domain.ArticleComment.Events;
 
 namespace Domic.UseCase.ArticleCommentUseCase.Events;
 
-public class CreateArticleCommentConsumerEventBusHandler : IConsumerEventBusHandler<ArticleCommentCreated>
+public class CreateArticleCommentConsumerEventBusHandler(IArticleCommentQueryRepository articleCommentQueryRepository) : IConsumerEventBusHandler<ArticleCommentCreated>
 {
-    private readonly IArticleCommentQueryRepository _articleCommentQueryRepository;
-
-    public CreateArticleCommentConsumerEventBusHandler(IArticleCommentQueryRepository articleCommentQueryRepository) 
-        => _articleCommentQueryRepository = articleCommentQueryRepository;
-
-    public void BeforeHandle(ArticleCommentCreated @event){}
+    public Task BeforeHandleAsync(ArticleCommentCreated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 
     [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = $"{Cache.AggregateArticleComments}|{Cache.AggregateArticles}")]
-    public void Handle(ArticleCommentCreated @event)
+    public async Task HandleAsync(ArticleCommentCreated @event, CancellationToken cancellationToken)
     {
-        var targetComment = _articleCommentQueryRepository.FindById(@event.Id);
+        var targetComment = await articleCommentQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 
         if (targetComment is null)
         {
             var newComment = new ArticleCommentQuery {
                 Id                    = @event.Id                    ,
-                CreatedBy             = @event.CreatedBy             ,
-                CreatedRole           = @event.CreatedRole           ,
                 ArticleId             = @event.ArticleId             ,
                 Comment               = @event.Comment               ,
+                CreatedBy             = @event.CreatedBy             ,
+                CreatedRole           = @event.CreatedRole           ,
                 CreatedAt_EnglishDate = @event.CreatedAt_EnglishDate ,
                 CreatedAt_PersianDate = @event.CreatedAt_PersianDate 
             };
 
-            _articleCommentQueryRepository.Add(newComment);
+            await articleCommentQueryRepository.AddAsync(newComment, cancellationToken);
         }
     }
 
-    public void AfterHandle(ArticleCommentCreated @event){}
+    public Task AfterHandleAsync(ArticleCommentCreated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }
