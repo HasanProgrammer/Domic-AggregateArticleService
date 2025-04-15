@@ -22,6 +22,7 @@ public class ArticleInternalDistributedCache(IArticleQueryRepository articleQuer
                 Body              = article.Body    ,
                 IsDeleted         = article.IsDeleted == IsDeleted.Delete ,
                 IsActive          = article.IsActive == IsActive.Active   ,
+                CreatedBy         = article.CreatedBy                     , 
                 CreatedAt_Persian = article.CreatedAt_PersianDate         ,
                 UpdatedAt_Persian = article.UpdatedAt_PersianDate         ,
                 CreatedAt_English = article.CreatedAt_EnglishDate         ,
