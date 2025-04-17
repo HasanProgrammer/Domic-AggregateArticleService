@@ -13,7 +13,7 @@ public class ReadAllPaginatedQueryHandler(IInternalDistributedCacheMediator dist
     public async Task<PaginatedCollection<ArticleDto>> HandleAsync(ReadAllPaginatedQuery query, 
         CancellationToken cancellationToken
     )
-    {   
+    {
         var articles = await distributedCacheMediator.GetAsync<List<ArticleDto>>(cancellationToken);
 
         articles = articles.Where(article =>
@@ -23,6 +23,6 @@ public class ReadAllPaginatedQueryHandler(IInternalDistributedCacheMediator dist
             ( string.IsNullOrEmpty(query.SearchText) || article.UserName.Contains(query.SearchText) )
         ).ToList();
 
-        return articles.ToPaginatedCollection(articles.Count(), query.CountPerPage.Value, query.PageNumber.Value, paginating: true);
+        return articles.ToPaginatedCollection(articles.Count, query.CountPerPage.Value, query.PageNumber.Value, paginating: true);
     }
 }
