@@ -1,11 +1,11 @@
 apiVersion: apps/v1
-kine: Deployment
+kind: Deployment
 metadata:
-	name: aggregate-article-deployment
+  name: aggregate-article-deployment
 spec:
   replicas: 3
-	selector:
-		matchLabels:
+  selector:
+    matchLabels:
       app: aggregate-article-pod
   template:
     metadata:
@@ -21,7 +21,6 @@ spec:
           ports:
             - containerPort: 80
           env:
-            # Global
             - name: ASPNETCORE_ENVIRONMENT
               valueFrom:
                 configMapKeyRef:
@@ -42,7 +41,6 @@ spec:
                 configMapKeyRef:
                   name: global-config-map
                   key: ASPNETCORE_Kestrel__Certificates__Default__Path
-            # Elastic
             - name: Elastic-Host
               valueFrom:
                 configMapKeyRef:
@@ -63,7 +61,6 @@ spec:
                 configMapKeyRef:
                   name: global-config-map
                   key: Aggregate-Article-Elastic-Index
-            # RabbitMQ
             - name: E-RabbitMQ-Host
               valueFrom:
                 configMapKeyRef:
@@ -84,7 +81,6 @@ spec:
                 configMapKeyRef:
                   name: global-config-map
                   key: E-RabbitMQ-Password
-            # Redis
             - name: I-RedisConnectionString
               valueFrom:
                 configMapKeyRef:
