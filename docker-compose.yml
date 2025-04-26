@@ -30,7 +30,7 @@ services:
       - I-RabbitMQ-Username=
       - I-RabbitMQ-Password=
       - E-RedisConnectionString=domic.redis:6379
-      - I-RedisConnectionString=
+      - I-RedisConnectionString=domic.aggregate.article.redis:7000
       - MongoConnectionString=
       - C-SqlServerConnectionString=
       - Q-SqlServerConnectionString=Server=domic.aggregate.article.query.sql.server,1433;Database=AggregateArticleService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;
@@ -42,6 +42,7 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Domic.WebAPI.pfx
     depends_on:
       - domic.aggregate.article.query.sql.server
+      - domic.aggregate.article.redis
   
   domic.aggregate.article.query.sql.server:
     networks:
@@ -53,6 +54,15 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Domic123!@#
+  
+  domic.aggregate.article.redis:
+    networks:
+      - domic
+    image: 'redis'
+    container_name: 'aggregatearticle_redis'
+    command: 'redis-server'
+    ports:
+      - 7000:6379
 
 volumes:
   log:
