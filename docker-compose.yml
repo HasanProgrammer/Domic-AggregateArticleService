@@ -30,7 +30,7 @@ services:
       - I-RabbitMQ-Username=
       - I-RabbitMQ-Password=
       - E-RedisConnectionString=domic.redis:6379
-      - I-RedisConnectionString=domic.aggregate.article.redis:7000
+      - I-RedisConnectionString=domic.aggregate.article.redis:6379
       - MongoConnectionString=
       - C-SqlServerConnectionString=
       - Q-SqlServerConnectionString=Server=domic.aggregate.article.query.sql.server,1433;Database=AggregateArticleService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;
