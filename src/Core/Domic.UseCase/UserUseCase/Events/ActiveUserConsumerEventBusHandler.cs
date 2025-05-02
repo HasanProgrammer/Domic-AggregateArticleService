@@ -1,4 +1,5 @@
 ﻿using Domic.Core.Common.ClassConsts;
+using Domic.Core.Common.ClassEnums;
 using Domic.Core.Domain.Enumerations;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
@@ -13,6 +14,7 @@ public class ActiveUserConsumerEventBusHandler(IUserQueryRepository userQueryRep
         => Task.CompletedTask;
 
     [TransactionConfig(Type = TransactionType.Query)]
+    [WithCleanCache(Keies = Cache.AggregateArticles)]
     public async Task HandleAsync(UserActived @event, CancellationToken cancellationToken)
     {
         var targetUser = await userQueryRepository.FindByIdAsync(@event.Id, cancellationToken);

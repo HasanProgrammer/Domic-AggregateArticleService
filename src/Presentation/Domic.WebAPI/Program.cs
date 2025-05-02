@@ -19,6 +19,7 @@ builder.WebHost.ConfigureAppConfiguration((context, builder) => builder.AddJsonF
 
 #region Service Container
 
+builder.RegisterAssemblyTypesInMemory(); //very important
 builder.RegisterHelpers();
 builder.RegisterELK();
 builder.RegisterEntityFrameworkCoreQuery<SQLContext>();
