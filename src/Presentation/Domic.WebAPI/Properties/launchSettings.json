@@ -35,7 +35,7 @@
         "I-RedisConnectionString": "127.0.0.1:6379",
         "MongoConnectionString": "",
         "C-SqlServerConnectionString": "",
-        "Q-SqlServerConnectionString": "Server=127.0.0.1,1633;Database=Q-AggregateArticleService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;",
+        "Q-SqlServerConnectionString": "Server=127.0.0.1,1633;Database=Q-AggregateArticleService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;TrustServerCertificate=true",
         "Host": "localhost",
         "Port": "3005",
         "ASPNETCORE_ENVIRONMENT": "Development"
