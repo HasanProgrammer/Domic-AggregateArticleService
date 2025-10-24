@@ -15,7 +15,8 @@ services:
       - "1000-1020:443"
     volumes:
       - log:/app/CoreLogs
-      - ~/services/Domic-AggregateArticleService/.https/:/https/
+#     - ~/services/Domic-AggregateArticleService/.https/:/https/
+      - c:\https\:/https/
     environment:
       - Elastic-Host=http://domic.elastic.search:9200
       - Elastic-Index=aggregatearticle
