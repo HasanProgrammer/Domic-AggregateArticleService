@@ -15,8 +15,8 @@ services:
       - "1000-1020:443"
     volumes:
       - log:/app/CoreLogs
-#     - ~/services/Domic-AggregateArticleService/.https/:/https/
-      - C:\https\:/https/
+      - ~/services/Domic-AggregateArticleService/.https/:/https/
+#     - C:\https\:/https/
     environment:
       - Elastic-Host=http://domic.elastic.search:9200
       - Elastic-Index=aggregatearticle
@@ -31,39 +31,42 @@ services:
       - I-RabbitMQ-Username=
       - I-RabbitMQ-Password=
       - E-RedisConnectionString=domic.redis:6379
-      - I-RedisConnectionString=domic.aggregate.article.redis:6379
+      - I-RedisConnectionString=domic.redis:6379
+#     - I-RedisConnectionString=domic.aggregate.article.redis:6379
       - MongoConnectionString=
       - C-SqlServerConnectionString=
-      - Q-SqlServerConnectionString=Server=domic.aggregate.article.query.sql.server,1433;Database=AggregateArticleService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;
+      - Q-SqlServerConnectionString=Server=domic.sql.server,1433;Database=AggregateArticleService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;
+#     - Q-SqlServerConnectionString=Server=domic.aggregate.article.query.sql.server,1433;Database=AggregateArticleService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;
       - Host=domic.aggregate.article.api
       - Port=443
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=Domic123!@#
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Domic.WebAPI.pfx
-    depends_on:
-      - domic.aggregate.article.query.sql.server
-      - domic.aggregate.article.redis
+    
+#   depends_on:
+#     - domic.aggregate.article.query.sql.server
+#     - domic.aggregate.article.redis
   
-  domic.aggregate.article.query.sql.server:
-    networks:
-      - domic
-    image: 'mcr.microsoft.com/mssql/server'
-    container_name: 'aggregate_article_query_sql_server'
-    ports:
-      - 1533:1433
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=Domic123!@#
+# domic.aggregate.article.query.sql.server:
+#   networks:
+#     - domic
+#   image: 'mcr.microsoft.com/mssql/server'
+#   container_name: 'aggregate_article_query_sql_server'
+#   ports:
+#     - 1533:1433
+#   environment:
+#     - ACCEPT_EULA=Y
+#     - SA_PASSWORD=Domic123!@#
   
-  domic.aggregate.article.redis:
-    networks:
-      - domic
-    image: 'redis'
-    container_name: 'aggregatearticle_redis'
-    command: 'redis-server'
-    ports:
-      - 7000:6379
+# domic.aggregate.article.redis:
+#   networks:
+#     - domic
+#   image: 'redis'
+#   container_name: 'aggregatearticle_redis'
+#   command: 'redis-server'
+#   ports:
+#     - 7000:6379
 
 volumes:
   log:
