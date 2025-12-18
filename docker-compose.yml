@@ -14,7 +14,7 @@ services:
     ports:
       - "1000-1020:443"
     volumes:
-      - log:/app/CoreLogs
+      - ~/services/Logs/Domic-AggregateArticleService/:/app/CoreLogs
       - ~/services/Domic-AggregateArticleService/.https/:/https/
 #     - C:\https\:/https/
     environment:
@@ -35,8 +35,8 @@ services:
 #     - I-RedisConnectionString=domic.aggregate.article.redis:6379
       - MongoConnectionString=
       - C-SqlServerConnectionString=
-      - Q-SqlServerConnectionString=Server=domic.sql.server,1433;Database=AggregateArticleService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;
-#     - Q-SqlServerConnectionString=Server=domic.aggregate.article.query.sql.server,1433;Database=AggregateArticleService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;
+      - Q-SqlServerConnectionString=Server=domic.sql.server,1433;Database=AggregateArticleService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;TrustServerCertificate=True;
+#     - Q-SqlServerConnectionString=Server=domic.aggregate.article.query.sql.server,1433;Database=AggregateArticleService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;TrustServerCertificate=True;
       - Host=domic.aggregate.article.api
       - Port=443
       - ASPNETCORE_ENVIRONMENT=Production
@@ -67,9 +67,6 @@ services:
 #   command: 'redis-server'
 #   ports:
 #     - 7000:6379
-
-volumes:
-  log:
     
 networks:
   domic:
