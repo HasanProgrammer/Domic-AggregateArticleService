@@ -2,11 +2,11 @@ name: 'aggregate_article_service'
 
 services:
   
-  domic.aggregate.article.api:
+  domic.aggregate.article.service:
     networks: 
       - domic
-    image: aggregate_article_service_api_image:1.0.0
-    container_name: "aggregate_article_service_api"
+    image: domic_aggregate_article_service_image:1.0.0
+    container_name: "domic_aggregate_article_service"
     build:
       context: .
       dockerfile: Dockerfile
